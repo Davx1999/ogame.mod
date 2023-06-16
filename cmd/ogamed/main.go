@@ -2,22 +2,35 @@ package main
 
 import (
 	"crypto/subtle"
+	"fmt"
+	"html/template"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+	"time"
+	"unicode"
 
 	"github.com/alaingilbert/ogame/pkg/device"
 	"github.com/alaingilbert/ogame/pkg/tlsclientconfig"
 	"github.com/alaingilbert/ogame/pkg/wrapper"
+	"github.com/glebarez/sqlite"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"gopkg.in/urfave/cli.v2"
+	"gorm.io/gorm"
 )
 
 var version = "0.0.0"
 var commit = ""
 var date = ""
+
+var db *gorm.DB
+
+func dbInit(username string) {
+	db, _ = gorm.Open(sqlite.Open("_gorm.db"), &gorm.Config{})
+	db.AutoMigrate(&BuildQueue{}, &BotPlanet{}, &ScheduleFleet{})
+}
 
 func main() {
 	app := cli.App{}
@@ -345,7 +358,53 @@ func start(c *cli.Context) error {
 		return err
 	}
 
+	dbInit(username)
+
+	bot.RegisterHTMLInterceptor(getHTMLInterceptor(bot))
+
 	e := echo.New()
+
+	tt := &MyTemplate{
+		templates: template.Must(template.New("").Funcs(template.FuncMap{
+			"title":             func(text string) string { return fmt.Sprintf("Das ist die Eingabe: %s", text) },
+			"ResourceCountdown": ResourceCountdown, // func ResourceCountdown(price ogame.Resources, res ogame.ResourcesDetails) (int64, string)
+			//"ResourceNeeded":    ResourceNeeded,
+			"FirstLetterToLowerCase": func(s string) string {
+
+				if len(s) == 0 {
+					return s
+				}
+
+				r := []rune(s)
+				r[0] = unicode.ToLower(r[0])
+
+				return string(r)
+			},
+			"Iterate": func(count int) []int {
+				var i int
+				var Items []int
+				for i = 0; i < count; i++ {
+					Items = append(Items, i)
+				}
+				return Items
+			},
+			"HourNow": func() int {
+				h, _, _ := time.Now().Clock()
+				return h
+			},
+			"MinuteNow": func() int {
+				_, m, _ := time.Now().Clock()
+				return m
+			},
+			"SecondNow": func() int {
+				_, _, s := time.Now().Clock()
+				return s
+			},
+		}).ParseGlob("templates/*.html")),
+	}
+
+	e.Renderer = tt
+
 	if corsEnabled {
 		e.Use(middleware.CORS())
 	}
@@ -372,6 +431,9 @@ func start(c *cli.Context) error {
 	e.HideBanner = true
 	e.HidePort = true
 	e.Debug = false
+	e.Static("/favicon.ico", "favicon.ico")
+	e.Static("/static", "assets")
+	e.Static("/public", "assets/public")
 	e.GET("/", wrapper.HomeHandler)
 	e.GET("/tasks", wrapper.TasksHandler)
 
@@ -483,6 +545,18 @@ func start(c *cli.Context) error {
 	*/
 	e.GET("/api/*", wrapper.GetStaticHandler)
 	e.HEAD("/api/*", wrapper.GetStaticHEADHandler) // AntiGame uses this to check if the cached XML files need to be refreshed
+
+	e.GET("/bot/empire/:planetID", GetEmpirePlanetHandler)
+	e.POST("/bot/empire/:planetID/addqueue/:ogameID/:nbr", AddQueue)
+	e.GET("/bot/empire/:planetID/getqueue", GetQueue)
+	//e.GET("/bot/ships/:celestialID", GetShips)
+	e.GET("/bot/ships/:celestialID", APIShips)
+	e.GET("/bot/resources/:celestialID", APIResources)
+	e.GET("/bot/get-fleets", APIFleets)
+	e.GET("/bot/flights", GetFlights)
+	e.POST("/bot/flights", APISendFleets)
+	e.POST("/bot/flighttime", APIFlightTime)
+	e.POST("/bot/flights/:fleetID/cancel", APIFlightsCancel)
 
 	if enableTLS {
 		log.Println("Enable TLS Support running encrypted HTTPS Server")

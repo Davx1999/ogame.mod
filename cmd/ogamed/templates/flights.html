@@ -1,0 +1,518 @@
+{{define "flights"}}
+
+{{template "header" .}}
+
+
+      <script>
+        
+      var serverVars = {
+        "planets": {{.Planets}},
+         "lcCapacity": {{.LcCapacity}},
+         "scCapacity": {{.ScCapacity}},
+         "dsCapacity": {{.DsCapacity}},
+         "pfCapacity": {{.PfCapacity}},
+         "rCapacity": {{.RCapacity}},
+      };
+      </script>
+
+
+<div class="container-fluid">
+    <div id="app1">
+        <div class="row">
+            <div class="col-12 col-lg-7 col-sm-12" style="z-index: 2;">
+
+                <form method="post" action="/bot/flights" class="mt-2">
+                    <input type="hidden" name="csrf" value="bpU49Uzvl7z4zJyM1wcNkVIxgwui2E7G" />
+                    <table class="table-striped mr-4 float-left">
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <span v-if="!allShips">Ships to <strong class="text-success">send</strong></span>
+                                <span v-else>Ships to <strong class="text-warning">keep</strong></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Light Fighter <span class="float-right max">(max: <span @click="LightFighter = LightFighter === ships.LightFighter ? 0 : ships.LightFighter" class="fakeLink">${ships.LightFighter}</span>)</span></td>
+                            <td><input name="LightFighter" v-model.number="LightFighter" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Heavy Fighter <span class="float-right max">(max: <span @click="HeavyFighter = HeavyFighter === ships.HeavyFighter ? 0 : ships.HeavyFighter" class="fakeLink">${ships.HeavyFighter}</span>)</span></td>
+                            <td><input name="HeavyFighter" v-model.number="HeavyFighter" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cruiser <span class="float-right max">(max: <span @click="Cruiser = Cruiser === ships.Cruiser ? 0 : ships.Cruiser" class="fakeLink">${ships.Cruiser}</span>)</span></td>
+                            <td><input name="Cruiser" v-model.number="Cruiser" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Battleship <span class="float-right max">(max: <span @click="Battleship = Battleship === ships.Battleship ? 0 : ships.Battleship" class="fakeLink">${ships.Battleship}</span>)</span></td>
+                            <td><input name="Battleship" v-model.number="Battleship" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Battlecruiser <span class="float-right max">(max: <span @click="Battlecruiser = Battlecruiser === ships.Battlecruiser ? 0 : ships.Battlecruiser" class="fakeLink">${ships.Battlecruiser}</span>)</span></td>
+                            <td><input name="Battlecruiser" v-model.number="Battlecruiser" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td >Bomber <span class="float-right max">(max: <span @click="Bomber = Bomber === ships.Bomber ? 0 : ships.Bomber" class="fakeLink">${ships.Bomber}</span>)</span></td>
+                            <td><input name="Bomber" v-model.number="Bomber" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td >Destroyer <span class="float-right max">(max: <span @click="Destroyer = Destroyer === ships.Destroyer ? 0 : ships.Destroyer" class="fakeLink">${ships.Destroyer}</span>)</span></td>
+                            <td><input name="Destroyer" v-model.number="Destroyer" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Deathstar <span class="float-right max">(max: <span @click="Deathstar = Deathstar === ships.Deathstar ? 0 : ships.Deathstar" class="fakeLink">${ships.Deathstar}</span>)</span></td>
+                            <td><input name="Deathstar" v-model.number="Deathstar" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Small Cargo  <span class="float-right max">(max: <span @click="SmallCargo = SmallCargo === ships.SmallCargo ? 0 : ships.SmallCargo" class="fakeLink">${ships.SmallCargo}</span>)</span></td>
+                            <td><input name="SmallCargo" v-model.number="SmallCargo" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Large Cargo <span class="float-right max">(max: <span @click="LargeCargo = LargeCargo === ships.LargeCargo ? 0 : ships.LargeCargo" class="fakeLink">${ships.LargeCargo}</span>)</span></td>
+                            <td><input name="LargeCargo" v-model.number="LargeCargo" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Colony Ship <span class="float-right max">(max: <span @click="ColonyShip = ColonyShip === ships.ColonyShip ? 0 : ships.ColonyShip" class="fakeLink">${ships.ColonyShip}</span>)</span></td>
+                            <td><input name="ColonyShip" v-model.number="ColonyShip" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Recycler <span class="float-right max">(max: <span @click="Recycler = Recycler === ships.Recycler ? 0 : ships.Recycler" class="fakeLink">${ships.Recycler}</span>)</span></td>
+                            <td><input name="Recycler" v-model.number="Recycler" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Espionage Probe <span class="float-right max">(max: <span @click="EspionageProbe = EspionageProbe === ships.EspionageProbe ? 0 : ships.EspionageProbe" class="fakeLink">${ships.EspionageProbe}</span>)</span></td>
+                            <td><input name="EspionageProbe" v-model.number="EspionageProbe" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Crawler <span class="float-right max">(max: <span @click="Crawler = Crawler === ships.Crawler ? 0 : ships.Crawler" class="fakeLink">${ships.Crawler}</span>)</span></td>
+                            <td><input name="Crawler" v-model.number="Crawler" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Reaper <span class="float-right max">(max: <span @click="Reaper = Reaper === ships.Reaper ? 0 : ships.Reaper" class="fakeLink">${ships.Reaper}</span>)</span></td>
+                            <td><input name="Reaper" v-model.number="Reaper" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Pathfinder <span class="float-right max">(max: <span @click="Pathfinder = Pathfinder === ships.Pathfinder ? 0 : ships.Pathfinder" class="fakeLink">${ships.Pathfinder}</span>)</span></td>
+                            <td><input name="Pathfinder" v-model.number="Pathfinder" type="number" class="form-control input-sm" min="0" /></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                (
+                                <span class="fakeLink" @click="selectAllShips">All</span> |
+                                <span class="fakeLink" @click="noShips">None</span>
+                                )
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        <table>
+                            <tr>
+                                <td class="text-right pr-2">from</td>
+                                <td>
+                                    <select name="origin" v-model.number="origin" @change="planetChanged">
+                                        <option value="">-- Select origin --</option>
+                                            {{range .Bot.GetCachedCelestials}}
+                                             <option value="{{.GetID}}">{{.GetName}} {{.GetCoordinate}}</option>
+                                             {{end}}
+                                        
+                                    </select>
+                                    <i v-if="planetLoading" class="fa fa-spinner fa-pulse fa-spin"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right pr-2">to</td>
+                                <td>
+                                    <input type="number" min="1" v-model.number="destGalaxy" class="form-control form-control-sm d-inline mt-1" style="width: 50px;" name="destGalaxy" />
+                                    <input type="number" min="1" v-model.number="destSystem" class="form-control form-control-sm d-inline mt-1" style="width: 50px;" name="destSystem" />
+                                    <input type="number" min="1" v-model.number="destPosition" class="form-control form-control-sm d-inline mt-1" style="width: 50px;" name="destPosition" />
+                                    <div class="dropdown d-inline">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-globe"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                       {{range .Bot.GetCachedCelestials}}
+                                       {{$c := .GetCoordinate}}
+                                          <a class="dropdown-item" style="cursor: pointer;" @click="shortcutClicked({{$c.Galaxy}}, {{$c.System}}, {{$c.Position}}, {{.GetCoordinate.Type.Int}})">{{.GetName}} {{.GetCoordinate}}</a>
+                                       {{end}}
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right pr-2">speed</td>
+                                <td>
+                                    <select name="speed" v-model.number="speed">
+                                        <option value="10">100%</option>
+                                        <option value="9">90%</option>
+                                        <option value="8">80%</option>
+                                        <option value="7">70%</option>
+                                        <option value="6">60%</option>
+                                        <option value="5">50%</option>
+                                        <option value="4">40%</option>
+                                        <option value="3">30%</option>
+                                        <option value="2">20%</option>
+                                        <option value="1">10%</option>
+                                    </select>
+                                    <select name="planetType" v-model.number="planetType" :disabled="mission == 8 || mission == 15">
+                                        <option value="1">Planet</option>
+                                        <option value="3">Moon</option>
+                                        <option value="2">Debris</option>
+                                    </select>
+                                    <input name="planetType" v-model.number="planetType" type="hidden" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <span data-toggle="tooltip" title="Expedition"           class="text-center simg_expedition"   :class="{mission_disabled: !missionExpeditionActive}"   @click="setMission(15)">Exp</span>
+                                    <span data-toggle="tooltip" title="Colonisation"         class="text-center simg_colonisation" :class="{mission_disabled: !missionColonisationActive}" @click="setMission(7)" >Col</span>
+                                    <span data-toggle="tooltip" title="Deployment"           class="text-center simg_park"         :class="{mission_disabled: !missionDeploymentActive}"   @click="setMission(4)" >Dep</span>
+                                    <span data-toggle="tooltip" title="Recycle debris field" class="text-center simg_recycle"      :class="{mission_disabled: !missionRecycleActive}"      @click="setMission(8)" >Rec</span>
+                                    <span data-toggle="tooltip" title="Transport"            class="text-center simg_transport"    :class="{mission_disabled: !missionTransportActive}"    @click="setMission(3)" >Tra</span>
+                                    <span data-toggle="tooltip" title="Espionage"            class="text-center simg_spy"          :class="{mission_disabled: !missionEspionageActive}"    @click="setMission(6)" >Esp</span>
+                                    
+                                    <span data-toggle="tooltip" title="Attack"               class="text-center simg_attack"       :class="{mission_disabled: !missionAttackActive}"       @click="setMission(1)" >Att</span>
+                                    
+                                    <span data-toggle="tooltip" title="Moon Destruction"     class="text-center simg_destruction"  :class="{mission_disabled: !missionDestructionActive}"  @click="setMission(9)" >Des</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right pr-2">mission</td>
+                                <td>
+                                    <select name="mission" v-model.number="mission">
+                                        <option value="1">Attack</option>
+                                        <option value="3">Transport</option>
+                                        <option value="4">Park</option>
+                                        <option value="5">Halt</option>
+                                        <option value="6">Spy</option>
+                                        <option value="7">Colonize</option>
+                                        <option value="8">Recycle debris field</option>
+                                        <option value="9">Destroy</option>
+                                        <option value="15">Expedition</option>
+                                    </select>
+                                    <select name="duration" v-if="mission == 15">
+
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                    </select>
+                                    <select name="duration" v-if="mission == 5">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="1">
+                                    <input name="allShips" v-model="allShips" id="allShips" type="checkbox" value="1" />
+                                    <label for="allShips">Send all ships</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="float-right">
+                                        <label for="allResources">Send all resources</label>
+                                        <input name="allResources" v-model="allResources" id="allResources" type="checkbox" value="1" />
+                                    </div>
+                                    <span v-if="!allResources">Resources to <strong class="text-success">send</strong>:</span>
+                                    <span v-else>Resources to <strong class="text-warning">keep</strong>:</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="d-inline-block mr-1">
+                                        <div class="input-group" style="width: 110px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text simg_Metal" style="width: 30px; height: 22px;" id="basic-addon1" title="Metal"></span>
+                                            </div>
+                                            <input v-model.number="metal" name="metal" type="number" min="0" class="form-control input-sm d-inline-block" style="height: 22px;" />
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block mr-1">
+                                        <div class="input-group" style="width: 110px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text simg_Crystal" style="width: 30px; height: 22px;" id="basic-addon1" title="Crystal"></span>
+                                            </div>
+                                            <input v-model.number="crystal" name="crystal" type="number" min="0" class="form-control input-sm d-inline-block" style="height: 22px;" />
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block mr-1">
+                                        <div class="input-group" style="width: 110px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text simg_Deuterium" style="width: 30px; height: 22px;" id="basic-addon1" title="Deuterium"></span>
+                                            </div>
+                                            <input v-model.number="deuterium" name="deuterium" type="number" min="0" class="form-control input-sm d-inline-block" style="height: 22px;" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span @click="toggleMetal()" class="fakeLink">${resources.Metal.toLocaleString()}</span> |
+                                    <span @click="toggleCrystal()" class="fakeLink">${resources.Crystal.toLocaleString()}</span> |
+                                    <span @click="toggleDeuterium()" class="fakeLink">${resources.Deuterium.toLocaleString()}</span> |
+                                    <span @click="allResources" class="fakeLink">${(resources.Deuterium + resources.Crystal + resources.Metal).toLocaleString()}</span>
+                                    ( <i class="fa fa-caret-up" @click="selectAllResources" style="cursor: pointer;" data-toggle="tooltip" title="All resources"></i> |
+                                    <i class="fa fa-caret-down" @click="noResources" style="cursor: pointer;" data-toggle="tooltip" title="No resources"></i> )
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span data-toggle="tooltip" title="Large cargo">LC</span>: <span @click="LargeCargo = LargeCargo === lcNeeded ? 0 : lcNeeded" class="fakeLink">${lcNeeded.toLocaleString()}</span> |
+                                    <span data-toggle="tooltip" title="Small cargo">SC</span>: <span @click="SmallCargo = SmallCargo === scNeeded ? 0 : scNeeded" class="fakeLink">${scNeeded.toLocaleString()}</span> |
+                                    <span data-toggle="tooltip" title="Deathstar">DS</span>: <span @click="Deathstar = Deathstar === dsNeeded ? 0 : dsNeeded" class="fakeLink">${dsNeeded.toLocaleString()}</span>
+                                    <span data-toggle="tooltip" title="Pathfinder">PF</span>: <span @click="Pathfinder = Pathfinder === pfNeeded ? 0 : pfNeeded" class="fakeLink">${pfNeeded.toLocaleString()}</span>
+                                    <span data-toggle="tooltip" title="Recycler">R</span>: <span @click="Recycler = Recycler === rNeeded ? 0 : rNeeded" class="fakeLink">${rNeeded.toLocaleString()}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Dur: <span v-if="!allShips">${humanTime}</span><span v-else>-</span> |
+                                    Fuel: <span v-if="!allShips">${fuel.toLocaleString()}</span><span v-else>-</span> |
+                                    FuelCapacity: ${fuelCapacity.toLocaleString()} |
+                                    Cargo: <span v-if="!allShips">${cargo.toLocaleString()}</span><span v-else>-</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Arrival:</td>
+                                <td><div style="font-family: Verdana, Arial, SunSans-Regular, sans-serif; font-size: 13px;">${arrivalFmt}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Return:</td>
+                                <td><div style="font-family: Verdana, Arial, SunSans-Regular, sans-serif; font-size: 13px;">${returnFmt}</div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <b-form-checkbox v-model="schedule" name="schedule" value="schedule">
+                                        Schedule
+                                        <span>
+                                            <select name="schedule_type" :disabled="schedule != 'schedule'">
+                                                <option value="depart_at">Depart at</option>
+                                                <option value="arrive_at">Arrive at</option>
+                                            </select>
+                                            
+                                            <select name="schedule_hour" :disabled="schedule != 'schedule'">
+                                                {{range $val := Iterate 23}}
+                                                    {{if eq HourNow $val}}
+                                                        <option value="{{$val}}" selected>{{$val}}</option>
+                                                    {{else}}
+                                                        <option value="{{$val}}">{{$val}}</option>
+                                                    {{end}}
+                                                {{end}}
+                                            </select>
+                                            <select name="schedule_min" :disabled="schedule != 'schedule'">
+                                                {{range $val := Iterate 59}}
+                                                    {{if eq MinuteNow $val}}
+                                                        <option value="{{$val}}" selected>{{$val}}</option>
+                                                    {{else}}
+                                                        <option value="{{$val}}">{{$val}}</option>
+                                                    {{end}}
+                                                {{end}}
+                                                
+                                            </select>
+                                            <select name="schedule_sec" :disabled="schedule != 'schedule'">
+                                                {{range $val := Iterate 59}}
+                                                    {{if eq SecondNow $val}}
+                                                        <option value="{{$val}}" selected>{{$val}}</option>
+                                                    {{else}}
+                                                        <option value="{{$val}}">{{$val}}</option>
+                                                    {{end}}
+                                                {{end}}                                                
+                                                
+                                            </select>
+                                        </span>
+                                    </b-form-checkbox>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="mt-2">
+                            <button class="btn btn-primary" type="submit" name="sendBtn" :disabled="(!hasShipSelected && !allShips) || destGalaxy === null || destSystem === null || destPosition === null" v-if="schedule == ''">
+                                <i class="fa fa-fw fa-fighter-jet"></i> Send fleet
+                            </button>
+                            <button class="btn btn-primary" type="submit" name="scheduleBtn" :disabled="(!hasShipSelected && !allShips) || destGalaxy === null || destSystem === null || destPosition === null" v-if="schedule == 'schedule'">
+                                <i class="fa fa-fw fa-fighter-jet"></i> Schedule fleet
+                            </button>
+                            <button class="btn btn-secondary" type="submit" name="saveBtn" :disabled="schedule == 'schedule' || (!hasShipSelected && !allShips)"><i class="fa fa-fw fa-save"></i> Save fleet</button>
+                            <button class="btn btn-secondary" type="submit" name="jumpBtn" :disabled="schedule == 'schedule' || !canUseJumpGate()">Jump gate</button>
+                        </div>
+                    </div>
+                    <div class="clearfix mb-4"></div>
+                </form>
+
+                <hr />
+
+                <h5>Scheduled flights</h5>
+                
+                    <div class="clearfix mb-3 empire-tr" style="padding: 4px 7px;">
+                        <em>No scheduled flights</em>
+                    </div>
+                
+
+                <h5>Saved fleets</h5>
+                
+                    <div class="clearfix mb-3 empire-tr" style="padding: 4px 7px;">
+                        <em>No saved flights</em>
+                    </div>
+                
+
+                <hr />
+                <a href="/bots/3/cronjobs/new" class="btn btn-success btn-sm float-right" data-toggle="tooltip" title="Add cron job"><i class="fa fa-fw fa-plus"></i></a>
+                <form class="d-inline float-right mr-1" id="deactivate_all" action="/bots/3/cronjobs/deactivate-all" method="post" onsubmit="event.preventDefault();">
+                    <input type="hidden" name="csrf" value="bpU49Uzvl7z4zJyM1wcNkVIxgwui2E7G" />
+                    <button class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Deactivate all" onclick="event.stopPropagation(); btnDeactivateAllClicked()"><i class="fa fa-fw fa-times"></i></button>
+                </form>
+                <form class="d-inline float-right mr-1" id="activate_all" action="/bots/3/cronjobs/activate-all" method="post" onsubmit="event.preventDefault();">
+                    <input type="hidden" name="csrf" value="bpU49Uzvl7z4zJyM1wcNkVIxgwui2E7G" />
+                    <button class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Activate all" onclick="event.stopPropagation(); btnActivateAllClicked()"><i class="fa fa-fw fa-check"></i></button>
+                </form>
+                <h5>Cron jobs <small>(random delay 0-10min added)</small></h5>
+                <table class="table table-striped table-novpadding table-sm table-borderless table-hover">
+                    <thead>
+                        <tr>
+                            <th>Active</th>
+                            <th>Spec</th>
+                            <th class="text-center">Flight</th>
+                            <th>Note</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                        <tr>
+                            <td colspan="5"><em>No cron job at the moment</em></td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-12 col-lg-5 col-sm-12">
+                <h5>Current fleets <small>(${slots.InUse}/${slots.Total}) Exp: (${slots.ExpInUse}/${slots.ExpTotal})</small></h5>
+                <table class="table table-novpadding table-sm">
+                    <thead>
+                    <tr>
+                        <th style="width: 150px;">Mission</th>
+                        <th style="width: 120px;">Origin</th>
+                        <th style="width: 50px;"></th>
+                        <th style="width: 120px;">Destination</th>
+                        <th style="width: 150px;">Arrive in</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(fleet, index) in fleets"
+                        v-bind:class="{'attack_mission': fleet.Mission == 1,
+                                       'transport_mission': fleet.Mission == 3,
+                                       'park_mission': fleet.Mission == 4,
+                                       'spy_mission': fleet.Mission == 6,
+                                       'colonize_mission': fleet.Mission == 7,
+                                       'harvest_mission': fleet.Mission == 8,
+                                       'expedition_mission': fleet.Mission == 15}">
+                        <td class="align-middle">
+                            <strong style="color: #E74C3C;" v-if="fleet.Mission == 1">Attack</strong>
+                            <strong style="color: #E74C3C;" v-else-if="fleet.Mission == 2">Grouped Attack</strong>
+                            <strong style="color: #c7fc4c;" v-else-if="fleet.Mission == 3">Transport</strong>
+                            <strong style="color: #3bdea2;" v-else-if="fleet.Mission == 4">Park</strong>
+                            <strong style="color: #3bdea2;" v-else-if="fleet.Mission == 5">Park In That Ally</strong>
+                            <strong style="color: #F39C12;" v-else-if="fleet.Mission == 6">Spy</strong>
+                            <strong style="color: #46dedc;" v-else-if="fleet.Mission == 7">Colonize</strong>
+                            <strong style="color: #2fbb5a;" v-else-if="fleet.Mission == 8">Harvest</strong>
+                            <strong style="color: #af2837;" v-else-if="fleet.Mission == 9">Destroy</strong>
+                            <strong v-else-if="fleet.Mission == 10">Missile Attack</strong>
+                            <strong style="color: #7fa1ff;" v-else-if="fleet.Mission == 15">Expedition</strong>
+                            <strong v-else>${fleet.Mission}</strong>
+                        </td>
+                        <td class="align-middle">
+                            <a v-bind:href="'/bots/3/galaxy?galaxy='+fleet.Origin.Galaxy+'&system='+fleet.Origin.System">
+                                [<span v-if="fleet.Origin.Type == 1">P</span><span v-else-if="fleet.Origin.Type == 3">M</span>:${fleet.Origin.Galaxy}:${fleet.Origin.System}:${fleet.Origin.Position}]
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            <span :id="'fleet-'+index">
+                                <img src="/public/img/returning.gif" alt="" v-if="fleet.ReturnFlight" />
+                                <img src="/public/img/not_returning.gif" alt="" v-else />
+                            </span>
+                            <b-popover :target="'fleet-'+index" triggers="hover focus">
+                                <template slot="title">Resources</template>
+                                M: ${fleet.Resources.Metal.toLocaleString()} |
+                                C: ${fleet.Resources.Crystal.toLocaleString()} |
+                                D: ${fleet.Resources.Deuterium.toLocaleString()}<br />
+                                <div v-for="(nbr, name) in fleet.Ships">
+                                    <div v-if="nbr > 0">${name}: ${nbr}<br /></div>
+                                </div>
+                            </b-popover>
+                        </td>
+                        <td class="align-middle">
+                            <a v-bind:href="'/bots/3/galaxy?galaxy='+fleet.Destination.Galaxy+'&system='+fleet.Destination.System">
+                                [<span v-if="fleet.Destination.Type == 1">P</span><span v-else-if="fleet.Destination.Type == 3">M</span>:${fleet.Destination.Galaxy}:${fleet.Destination.System}:${fleet.Destination.Position}]
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            <countdown :time="(fleet.ArriveIn > -1 ? fleet.ArriveIn : fleet.BackIn) * 1000" v-bind:title="fleet.ArrivalTime | formatDate" v-b-tooltip.hover>
+                                <template slot-scope="props">${props.days}d ${props.hours}h ${props.minutes}m ${props.seconds}s</template>
+                            </countdown>
+                        </td>
+                        <td class="text-right">
+                            <form class="d-inline"
+                                  v-if="!fleet.ReturnFlight"
+                                  v-bind:id="'delete_fleet_'+fleet.ID"
+                                  v-bind:action="'/bot/flights/'+fleet.ID+'/cancel'"
+                                  method="post"
+                                  onsubmit="event.preventDefault();">
+                                <input type="hidden" name="csrf" value="bpU49Uzvl7z4zJyM1wcNkVIxgwui2E7G" />
+                                <button class="btn btn-danger btn-sm" v-b-tooltip.hover title="Cancel Fleet"
+                                        v-bind:onclick="'event.stopPropagation(); btnCancelFleetClicked('+fleet.ID+')'">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div v-if="fleets.length == 0 && !loading">
+                    <em>No fleets</em>
+                </div>
+                <div v-else-if="loading">
+                    <i class="fa fa-fw fa-spinner fa-spin fa-pulse fa-2x"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/public/js/pages/flights.js"></script>
+
+    </div>
+
+</body>
+</html>
+
+{{end}}

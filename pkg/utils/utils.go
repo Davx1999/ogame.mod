@@ -3,6 +3,7 @@ package utils
 import (
 	"bytes"
 	"compress/gzip"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"math/rand"
@@ -220,4 +221,25 @@ func AbsDiffUint64(x, y uint64) uint64 {
 		return y - x
 	}
 	return x - y
+}
+
+func GetNextExecutionTime(currentTime time.Time, executionTime string) time.Time {
+	// Parse execution time
+	layout := "15:4:5"
+	execution, err := time.Parse(layout, executionTime)
+	if err != nil {
+		fmt.Println("Error parsing execution time:", err)
+		return time.Time{}
+	}
+
+	// Set the date part to the current date
+	execution = time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), execution.Hour(), execution.Minute(), execution.Second(), execution.Nanosecond(), execution.Location())
+
+	// Check if execution time has already passed today
+	if execution.Before(currentTime) {
+		// Add 24 hours to the execution time to get the next day's execution time
+		execution = execution.Add(24 * time.Hour)
+	}
+
+	return execution
 }

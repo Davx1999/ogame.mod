@@ -1,0 +1,2205 @@
+#productionboxlfbuildingcomponent a.abortNow {
+    background: transparent url(//gf3.geo.gfsrv.net/cdneb/f5f81e8302aaad56c958c033677fb8.png) -208px -71px no-repeat;
+    height: 15px;
+    position: absolute;
+    width: 15px;
+    right: 1px;
+    bottom: 0;
+}
+
+/********************************************************
+ ********************************************************
+ ******************* SPRITE IMAGES **********************
+ ********************************************************
+ ********************************************************/
+.lifeformsprite_before::before,
+.lifeformsprite_after::after,
+.queuePic.lifeformqueue,
+.queuePic.lifeformqueuetiny,
+.lifeformsprite {
+    background-image: url('//gf3.geo.gfsrv.net/cdne7/2d828476bacc6b1e6bbfaf2a9fb041.jpg') !important;
+}
+
+/********************************************************
+ ************** *  SIZES AND MODES  * *******************
+ ********************************************************/
+.sprite_before.sprite_large::before,
+.sprite_after.sprite_large::after,
+.lifeformsprite_before.sprite_large::before,
+.lifeformsprite_after.sprite_large::after,
+.lifeformsprite.sprite_large {
+    width: 200px;
+    height: 200px;
+    /*background-size: 3600px 5920px;*/
+}
+
+.sprite_before.sprite_medium::before,
+.sprite_after.sprite_medium::after,
+.lifeformsprite_before.sprite_medium::before,
+.lifeformsprite_after.sprite_medium::after,
+.lifeformsprite.sprite_medium {
+    width: 100px;
+    height: 100px;
+}
+
+.sprite_before.sprite_small::before,
+.sprite_after.sprite_small::after,
+.lifeformsprite_before.sprite_small::before,
+.lifeformsprite_after.sprite_small::after,
+.lifeformsprite.sprite_small {
+    width: 80px;
+    height: 80px;
+}
+
+.sprite_before.sprite_tiny::before,
+.sprite_after.sprite_tiny::after,
+.lifeformsprite_before.sprite_tiny::before,
+.lifeformsprite_after.sprite_tiny::after,
+.lifeformsprite.sprite_tiny {
+    width: 28px;
+    height: 28px;
+}
+/* ~~~~~ LIFEFORM1 ~~~~~ */
+/* ~~~~~ BUILDINGS ~~~~~ */
+/* Large */
+.lifeformsprite_before.lifeformTech11101::before,
+.lifeformsprite_before.lifeformTech11102::before,
+.lifeformsprite_before.lifeformTech11103::before,
+.lifeformsprite_before.lifeformTech11104::before,
+.lifeformsprite_before.lifeformTech11105::before,
+.lifeformsprite_before.lifeformTech11106::before,
+.lifeformsprite_before.lifeformTech11107::before,
+.lifeformsprite_before.lifeformTech11108::before,
+.lifeformsprite_before.lifeformTech11109::before,
+.lifeformsprite_before.lifeformTech11110::before,
+.lifeformsprite_before.lifeformTech11111::before,
+.lifeformsprite_before.lifeformTech11112::before,
+.lifeformsprite_after.lifeformTech11101::after,
+.lifeformsprite_after.lifeformTech11102::after,
+.lifeformsprite_after.lifeformTech11103::after,
+.lifeformsprite_after.lifeformTech11104::after,
+.lifeformsprite_after.lifeformTech11105::after,
+.lifeformsprite_after.lifeformTech11106::after,
+.lifeformsprite_after.lifeformTech11107::after,
+.lifeformsprite_after.lifeformTech11108::after,
+.lifeformsprite_after.lifeformTech11109::after,
+.lifeformsprite_after.lifeformTech11110::after,
+.lifeformsprite_after.lifeformTech11111::after,
+.lifeformsprite_after.lifeformTech11112::after,
+.lifeformsprite.sprite_large.lifeformTech11101,
+.lifeformsprite.sprite_large.lifeformTech11102,
+.lifeformsprite.sprite_large.lifeformTech11103,
+.lifeformsprite.sprite_large.lifeformTech11104,
+.lifeformsprite.sprite_large.lifeformTech11105,
+.lifeformsprite.sprite_large.lifeformTech11106,
+.lifeformsprite.sprite_large.lifeformTech11107,
+.lifeformsprite.sprite_large.lifeformTech11108,
+.lifeformsprite.sprite_large.lifeformTech11109,
+.lifeformsprite.sprite_large.lifeformTech11110,
+.lifeformsprite.sprite_large.lifeformTech11111,
+.lifeformsprite.sprite_large.lifeformTech11112
+{
+    background-position-y: 0;
+}
+.lifeformsprite_before.lifeformTech12101::before,
+.lifeformsprite_before.lifeformTech12102::before,
+.lifeformsprite_before.lifeformTech12103::before,
+.lifeformsprite_before.lifeformTech12104::before,
+.lifeformsprite_before.lifeformTech12105::before,
+.lifeformsprite_before.lifeformTech12106::before,
+.lifeformsprite_before.lifeformTech12107::before,
+.lifeformsprite_before.lifeformTech12108::before,
+.lifeformsprite_before.lifeformTech12109::before,
+.lifeformsprite_before.lifeformTech12110::before,
+.lifeformsprite_before.lifeformTech12111::before,
+.lifeformsprite_before.lifeformTech12112::before,
+.lifeformsprite_after.lifeformTech12101::after,
+.lifeformsprite_after.lifeformTech12102::after,
+.lifeformsprite_after.lifeformTech12103::after,
+.lifeformsprite_after.lifeformTech12104::after,
+.lifeformsprite_after.lifeformTech12105::after,
+.lifeformsprite_after.lifeformTech12106::after,
+.lifeformsprite_after.lifeformTech12107::after,
+.lifeformsprite_after.lifeformTech12108::after,
+.lifeformsprite_after.lifeformTech12109::after,
+.lifeformsprite_after.lifeformTech12110::after,
+.lifeformsprite_after.lifeformTech12111::after,
+.lifeformsprite_after.lifeformTech12112::after,
+.lifeformsprite.sprite_large.lifeformTech12101,
+.lifeformsprite.sprite_large.lifeformTech12102,
+.lifeformsprite.sprite_large.lifeformTech12103,
+.lifeformsprite.sprite_large.lifeformTech12104,
+.lifeformsprite.sprite_large.lifeformTech12105,
+.lifeformsprite.sprite_large.lifeformTech12106,
+.lifeformsprite.sprite_large.lifeformTech12107,
+.lifeformsprite.sprite_large.lifeformTech12108,
+.lifeformsprite.sprite_large.lifeformTech12109,
+.lifeformsprite.sprite_large.lifeformTech12110,
+.lifeformsprite.sprite_large.lifeformTech12111,
+.lifeformsprite.sprite_large.lifeformTech12112
+{
+    background-position-y: -1480px;
+}
+.lifeformsprite_before.lifeformTech13101::before,
+.lifeformsprite_before.lifeformTech13102::before,
+.lifeformsprite_before.lifeformTech13103::before,
+.lifeformsprite_before.lifeformTech13104::before,
+.lifeformsprite_before.lifeformTech13105::before,
+.lifeformsprite_before.lifeformTech13106::before,
+.lifeformsprite_before.lifeformTech13107::before,
+.lifeformsprite_before.lifeformTech13108::before,
+.lifeformsprite_before.lifeformTech13109::before,
+.lifeformsprite_before.lifeformTech13110::before,
+.lifeformsprite_before.lifeformTech13111::before,
+.lifeformsprite_before.lifeformTech13112::before,
+.lifeformsprite_after.lifeformTech13101::after,
+.lifeformsprite_after.lifeformTech13102::after,
+.lifeformsprite_after.lifeformTech13103::after,
+.lifeformsprite_after.lifeformTech13104::after,
+.lifeformsprite_after.lifeformTech13105::after,
+.lifeformsprite_after.lifeformTech13106::after,
+.lifeformsprite_after.lifeformTech13107::after,
+.lifeformsprite_after.lifeformTech13108::after,
+.lifeformsprite_after.lifeformTech13109::after,
+.lifeformsprite_after.lifeformTech13110::after,
+.lifeformsprite_after.lifeformTech13111::after,
+.lifeformsprite_after.lifeformTech13112::after,
+.lifeformsprite.sprite_large.lifeformTech13101,
+.lifeformsprite.sprite_large.lifeformTech13102,
+.lifeformsprite.sprite_large.lifeformTech13103,
+.lifeformsprite.sprite_large.lifeformTech13104,
+.lifeformsprite.sprite_large.lifeformTech13105,
+.lifeformsprite.sprite_large.lifeformTech13106,
+.lifeformsprite.sprite_large.lifeformTech13107,
+.lifeformsprite.sprite_large.lifeformTech13108,
+.lifeformsprite.sprite_large.lifeformTech13109,
+.lifeformsprite.sprite_large.lifeformTech13110,
+.lifeformsprite.sprite_large.lifeformTech13111,
+.lifeformsprite.sprite_large.lifeformTech13112
+{
+    background-position-y: -2960px;
+}
+.lifeformsprite_before.lifeformTech14101::before,
+.lifeformsprite_before.lifeformTech14102::before,
+.lifeformsprite_before.lifeformTech14103::before,
+.lifeformsprite_before.lifeformTech14104::before,
+.lifeformsprite_before.lifeformTech14105::before,
+.lifeformsprite_before.lifeformTech14106::before,
+.lifeformsprite_before.lifeformTech14107::before,
+.lifeformsprite_before.lifeformTech14108::before,
+.lifeformsprite_before.lifeformTech14109::before,
+.lifeformsprite_before.lifeformTech14110::before,
+.lifeformsprite_before.lifeformTech14111::before,
+.lifeformsprite_before.lifeformTech14112::before,
+.lifeformsprite_after.lifeformTech14101::after,
+.lifeformsprite_after.lifeformTech14102::after,
+.lifeformsprite_after.lifeformTech14103::after,
+.lifeformsprite_after.lifeformTech14104::after,
+.lifeformsprite_after.lifeformTech14105::after,
+.lifeformsprite_after.lifeformTech14106::after,
+.lifeformsprite_after.lifeformTech14107::after,
+.lifeformsprite_after.lifeformTech14108::after,
+.lifeformsprite_after.lifeformTech14109::after,
+.lifeformsprite_after.lifeformTech14110::after,
+.lifeformsprite_after.lifeformTech14111::after,
+.lifeformsprite_after.lifeformTech14112::after,
+.lifeformsprite.sprite_large.lifeformTech14101,
+.lifeformsprite.sprite_large.lifeformTech14102,
+.lifeformsprite.sprite_large.lifeformTech14103,
+.lifeformsprite.sprite_large.lifeformTech14104,
+.lifeformsprite.sprite_large.lifeformTech14105,
+.lifeformsprite.sprite_large.lifeformTech14106,
+.lifeformsprite.sprite_large.lifeformTech14107,
+.lifeformsprite.sprite_large.lifeformTech14108,
+.lifeformsprite.sprite_large.lifeformTech14109,
+.lifeformsprite.sprite_large.lifeformTech14110,
+.lifeformsprite.sprite_large.lifeformTech14111,
+.lifeformsprite.sprite_large.lifeformTech14112
+{
+    background-position-y: -4440px;
+}
+
+.lifeformsprite_before.lifeformTech11101::before,
+.lifeformsprite_after.lifeformTech11101::after,
+.lifeformsprite.sprite_large.lifeformTech11101,
+.lifeformsprite_before.lifeformTech12101::before,
+.lifeformsprite_after.lifeformTech12101::after,
+.lifeformsprite.sprite_large.lifeformTech12101,
+.lifeformsprite_before.lifeformTech13101::before,
+.lifeformsprite_after.lifeformTech13101::after,
+.lifeformsprite.sprite_large.lifeformTech13101,
+.lifeformsprite_before.lifeformTech14101::before,
+.lifeformsprite_after.lifeformTech14101::after,
+.lifeformsprite.sprite_large.lifeformTech14101 {
+    background-position-x: 0;
+}
+.lifeformsprite_before.lifeformTech11102::before,
+.lifeformsprite_after.lifeformTech11102::after,
+.lifeformsprite.sprite_large.lifeformTech11102,
+.lifeformsprite_before.lifeformTech12102::before,
+.lifeformsprite_after.lifeformTech12102::after,
+.lifeformsprite.sprite_large.lifeformTech12102,
+.lifeformsprite_before.lifeformTech13102::before,
+.lifeformsprite_after.lifeformTech13102::after,
+.lifeformsprite.sprite_large.lifeformTech13102,
+.lifeformsprite_before.lifeformTech14102::before,
+.lifeformsprite_after.lifeformTech14102::after,
+.lifeformsprite.sprite_large.lifeformTech14102 {
+    background-position-x: -200px;
+}
+.lifeformsprite_before.lifeformTech11103::before,
+.lifeformsprite_after.lifeformTech11103::after,
+.lifeformsprite.sprite_large.lifeformTech11103,
+.lifeformsprite_before.lifeformTech12103::before,
+.lifeformsprite_after.lifeformTech12103::after,
+.lifeformsprite.sprite_large.lifeformTech12103,
+.lifeformsprite_before.lifeformTech13103::before,
+.lifeformsprite_after.lifeformTech13103::after,
+.lifeformsprite.sprite_large.lifeformTech13103,
+.lifeformsprite_before.lifeformTech14103::before,
+.lifeformsprite_after.lifeformTech14103::after,
+.lifeformsprite.sprite_large.lifeformTech14103 {
+    background-position-x: -400px;
+}
+.lifeformsprite_before.lifeformTech11104::before,
+.lifeformsprite_after.lifeformTech11104::after,
+.lifeformsprite.sprite_large.lifeformTech11104,
+.lifeformsprite_before.lifeformTech12104::before,
+.lifeformsprite_after.lifeformTech12104::after,
+.lifeformsprite.sprite_large.lifeformTech12104,
+.lifeformsprite_before.lifeformTech13104::before,
+.lifeformsprite_after.lifeformTech13104::after,
+.lifeformsprite.sprite_large.lifeformTech13104,
+.lifeformsprite_before.lifeformTech14104::before,
+.lifeformsprite_after.lifeformTech14104::after,
+.lifeformsprite.sprite_large.lifeformTech14104 {
+    background-position-x: -600px;
+}
+.lifeformsprite_before.lifeformTech11105::before,
+.lifeformsprite_after.lifeformTech11105::after,
+.lifeformsprite.sprite_large.lifeformTech11105,
+.lifeformsprite_before.lifeformTech12105::before,
+.lifeformsprite_after.lifeformTech12105::after,
+.lifeformsprite.sprite_large.lifeformTech12105,
+.lifeformsprite_before.lifeformTech13105::before,
+.lifeformsprite_after.lifeformTech13105::after,
+.lifeformsprite.sprite_large.lifeformTech13105,
+.lifeformsprite_before.lifeformTech14105::before,
+.lifeformsprite_after.lifeformTech14105::after,
+.lifeformsprite.sprite_large.lifeformTech14105 {
+    background-position-x: -800px;
+}
+.lifeformsprite_before.lifeformTech11106::before,
+.lifeformsprite_after.lifeformTech11106::after,
+.lifeformsprite.sprite_large.lifeformTech11106,
+.lifeformsprite_before.lifeformTech12106::before,
+.lifeformsprite_after.lifeformTech12106::after,
+.lifeformsprite.sprite_large.lifeformTech12106,
+.lifeformsprite_before.lifeformTech13106::before,
+.lifeformsprite_after.lifeformTech13106::after,
+.lifeformsprite.sprite_large.lifeformTech13106,
+.lifeformsprite_before.lifeformTech14106::before,
+.lifeformsprite_after.lifeformTech14106::after,
+.lifeformsprite.sprite_large.lifeformTech14106 {
+    background-position-x: -1000px;
+}
+.lifeformsprite_before.lifeformTech11107::before,
+.lifeformsprite_after.lifeformTech11107::after,
+.lifeformsprite.sprite_large.lifeformTech11107,
+.lifeformsprite_before.lifeformTech12107::before,
+.lifeformsprite_after.lifeformTech12107::after,
+.lifeformsprite.sprite_large.lifeformTech12107,
+.lifeformsprite_before.lifeformTech13107::before,
+.lifeformsprite_after.lifeformTech13107::after,
+.lifeformsprite.sprite_large.lifeformTech13107,
+.lifeformsprite_before.lifeformTech14107::before,
+.lifeformsprite_after.lifeformTech14107::after,
+.lifeformsprite.sprite_large.lifeformTech14107 {
+    background-position-x: -1200px;
+}
+.lifeformsprite_before.lifeformTech11108::before,
+.lifeformsprite_after.lifeformTech11108::after,
+.lifeformsprite.sprite_large.lifeformTech11108,
+.lifeformsprite_before.lifeformTech12108::before,
+.lifeformsprite_after.lifeformTech12108::after,
+.lifeformsprite.sprite_large.lifeformTech12108,
+.lifeformsprite_before.lifeformTech13108::before,
+.lifeformsprite_after.lifeformTech13108::after,
+.lifeformsprite.sprite_large.lifeformTech13108,
+.lifeformsprite_before.lifeformTech14108::before,
+.lifeformsprite_after.lifeformTech14108::after,
+.lifeformsprite.sprite_large.lifeformTech14108 {
+    background-position-x: -1400px;
+}
+.lifeformsprite_before.lifeformTech11109::before,
+.lifeformsprite_after.lifeformTech11109::after,
+.lifeformsprite.sprite_large.lifeformTech11109,
+.lifeformsprite_before.lifeformTech12109::before,
+.lifeformsprite_after.lifeformTech12109::after,
+.lifeformsprite.sprite_large.lifeformTech12109,
+.lifeformsprite_before.lifeformTech13109::before,
+.lifeformsprite_after.lifeformTech13109::after,
+.lifeformsprite.sprite_large.lifeformTech13109,
+.lifeformsprite_before.lifeformTech14109::before,
+.lifeformsprite_after.lifeformTech14109::after,
+.lifeformsprite.sprite_large.lifeformTech14109 {
+    background-position-x: -1600px;
+}
+.lifeformsprite_before.lifeformTech11110::before,
+.lifeformsprite_after.lifeformTech11110::after,
+.lifeformsprite.sprite_large.lifeformTech11110,
+.lifeformsprite_before.lifeformTech12110::before,
+.lifeformsprite_after.lifeformTech12110::after,
+.lifeformsprite.sprite_large.lifeformTech12110,
+.lifeformsprite_before.lifeformTech13110::before,
+.lifeformsprite_after.lifeformTech13110::after,
+.lifeformsprite.sprite_large.lifeformTech13110,
+.lifeformsprite_before.lifeformTech14110::before,
+.lifeformsprite_after.lifeformTech14110::after,
+.lifeformsprite.sprite_large.lifeformTech14110 {
+    background-position-x: -1800px;
+}
+.lifeformsprite_before.lifeformTech11111::before,
+.lifeformsprite_after.lifeformTech11111::after,
+.lifeformsprite.sprite_large.lifeformTech11111,
+.lifeformsprite_before.lifeformTech12111::before,
+.lifeformsprite_after.lifeformTech12111::after,
+.lifeformsprite.sprite_large.lifeformTech12111,
+.lifeformsprite_before.lifeformTech13111::before,
+.lifeformsprite_after.lifeformTech13111::after,
+.lifeformsprite.sprite_large.lifeformTech13111,
+.lifeformsprite_before.lifeformTech14111::before,
+.lifeformsprite_after.lifeformTech14111::after,
+.lifeformsprite.sprite_large.lifeformTech14111 {
+    background-position-x: -2000px;
+}
+.lifeformsprite_before.lifeformTech11112::before,
+.lifeformsprite_after.lifeformTech11112::after,
+.lifeformsprite.sprite_large.lifeformTech11112,
+.lifeformsprite_before.lifeformTech12112::before,
+.lifeformsprite_after.lifeformTech12112::after,
+.lifeformsprite.sprite_large.lifeformTech12112,
+.lifeformsprite_before.lifeformTech13112::before,
+.lifeformsprite_after.lifeformTech13112::after,
+.lifeformsprite.sprite_large.lifeformTech13112,
+.lifeformsprite_before.lifeformTech14112::before,
+.lifeformsprite_after.lifeformTech14112::after,
+.lifeformsprite.sprite_large.lifeformTech14112 {
+    background-position-x: -2200px;
+}
+/* Medium */
+.lifeformsprite.sprite_medium.lifeformTech11101,
+.lifeformsprite.sprite_medium.lifeformTech11102,
+.lifeformsprite.sprite_medium.lifeformTech11103,
+.lifeformsprite.sprite_medium.lifeformTech11104,
+.lifeformsprite.sprite_medium.lifeformTech11105,
+.lifeformsprite.sprite_medium.lifeformTech11106,
+.lifeformsprite.sprite_medium.lifeformTech11107,
+.lifeformsprite.sprite_medium.lifeformTech11108,
+.lifeformsprite.sprite_medium.lifeformTech11109,
+.lifeformsprite.sprite_medium.lifeformTech11110,
+.lifeformsprite.sprite_medium.lifeformTech11111,
+.lifeformsprite.sprite_medium.lifeformTech11112
+{
+    background-position-y: -200px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech12101,
+.lifeformsprite.sprite_medium.lifeformTech12102,
+.lifeformsprite.sprite_medium.lifeformTech12103,
+.lifeformsprite.sprite_medium.lifeformTech12104,
+.lifeformsprite.sprite_medium.lifeformTech12105,
+.lifeformsprite.sprite_medium.lifeformTech12106,
+.lifeformsprite.sprite_medium.lifeformTech12107,
+.lifeformsprite.sprite_medium.lifeformTech12108,
+.lifeformsprite.sprite_medium.lifeformTech12109,
+.lifeformsprite.sprite_medium.lifeformTech12110,
+.lifeformsprite.sprite_medium.lifeformTech12111,
+.lifeformsprite.sprite_medium.lifeformTech12112
+{
+    background-position-y: -1680px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech13101,
+.lifeformsprite.sprite_medium.lifeformTech13102,
+.lifeformsprite.sprite_medium.lifeformTech13103,
+.lifeformsprite.sprite_medium.lifeformTech13104,
+.lifeformsprite.sprite_medium.lifeformTech13105,
+.lifeformsprite.sprite_medium.lifeformTech13106,
+.lifeformsprite.sprite_medium.lifeformTech13107,
+.lifeformsprite.sprite_medium.lifeformTech13108,
+.lifeformsprite.sprite_medium.lifeformTech13109,
+.lifeformsprite.sprite_medium.lifeformTech13110,
+.lifeformsprite.sprite_medium.lifeformTech13111,
+.lifeformsprite.sprite_medium.lifeformTech13112
+{
+    background-position-y: -3160px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech14101,
+.lifeformsprite.sprite_medium.lifeformTech14102,
+.lifeformsprite.sprite_medium.lifeformTech14103,
+.lifeformsprite.sprite_medium.lifeformTech14104,
+.lifeformsprite.sprite_medium.lifeformTech14105,
+.lifeformsprite.sprite_medium.lifeformTech14106,
+.lifeformsprite.sprite_medium.lifeformTech14107,
+.lifeformsprite.sprite_medium.lifeformTech14108,
+.lifeformsprite.sprite_medium.lifeformTech14109,
+.lifeformsprite.sprite_medium.lifeformTech14110,
+.lifeformsprite.sprite_medium.lifeformTech14111,
+.lifeformsprite.sprite_medium.lifeformTech14112
+{
+    background-position-y: -4640px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech11101,
+.lifeformsprite.sprite_medium.lifeformTech12101,
+.lifeformsprite.sprite_medium.lifeformTech13101,
+.lifeformsprite.sprite_medium.lifeformTech14101 {
+    background-position-x: 0;
+}
+.lifeformsprite.sprite_medium.lifeformTech11102,
+.lifeformsprite.sprite_medium.lifeformTech12102,
+.lifeformsprite.sprite_medium.lifeformTech13102,
+.lifeformsprite.sprite_medium.lifeformTech14102 {
+    background-position-x: -100px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11103,
+.lifeformsprite.sprite_medium.lifeformTech12103,
+.lifeformsprite.sprite_medium.lifeformTech13103,
+.lifeformsprite.sprite_medium.lifeformTech14103 {
+    background-position-x: -200px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11104,
+.lifeformsprite.sprite_medium.lifeformTech12104,
+.lifeformsprite.sprite_medium.lifeformTech13104,
+.lifeformsprite.sprite_medium.lifeformTech14104 {
+    background-position-x: -300px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11105,
+.lifeformsprite.sprite_medium.lifeformTech12105,
+.lifeformsprite.sprite_medium.lifeformTech13105,
+.lifeformsprite.sprite_medium.lifeformTech14105 {
+    background-position-x: -400px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11106,
+.lifeformsprite.sprite_medium.lifeformTech12106,
+.lifeformsprite.sprite_medium.lifeformTech13106,
+.lifeformsprite.sprite_medium.lifeformTech14106 {
+    background-position-x: -500px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11107,
+.lifeformsprite.sprite_medium.lifeformTech12107,
+.lifeformsprite.sprite_medium.lifeformTech13107,
+.lifeformsprite.sprite_medium.lifeformTech14107 {
+    background-position-x: -600px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11108,
+.lifeformsprite.sprite_medium.lifeformTech12108,
+.lifeformsprite.sprite_medium.lifeformTech13108,
+.lifeformsprite.sprite_medium.lifeformTech14108 {
+    background-position-x: -700px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11109,
+.lifeformsprite.sprite_medium.lifeformTech12109,
+.lifeformsprite.sprite_medium.lifeformTech13109,
+.lifeformsprite.sprite_medium.lifeformTech14109 {
+    background-position-x: -800px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11110,
+.lifeformsprite.sprite_medium.lifeformTech12110,
+.lifeformsprite.sprite_medium.lifeformTech13110,
+.lifeformsprite.sprite_medium.lifeformTech14110 {
+    background-position-x: -900px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11111,
+.lifeformsprite.sprite_medium.lifeformTech12111,
+.lifeformsprite.sprite_medium.lifeformTech13111,
+.lifeformsprite.sprite_medium.lifeformTech14111 {
+    background-position-x: -1000px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11112,
+.lifeformsprite.sprite_medium.lifeformTech12112,
+.lifeformsprite.sprite_medium.lifeformTech13112,
+.lifeformsprite.sprite_medium.lifeformTech14112 {
+    background-position-x: -1100px;
+}
+/* Small */
+/* Medium */
+.lifeformsprite.sprite_small.lifeformTech11101,
+.lifeformsprite.sprite_small.lifeformTech11102,
+.lifeformsprite.sprite_small.lifeformTech11103,
+.lifeformsprite.sprite_small.lifeformTech11104,
+.lifeformsprite.sprite_small.lifeformTech11105,
+.lifeformsprite.sprite_small.lifeformTech11106,
+.lifeformsprite.sprite_small.lifeformTech11107,
+.lifeformsprite.sprite_small.lifeformTech11108,
+.lifeformsprite.sprite_small.lifeformTech11109,
+.lifeformsprite.sprite_small.lifeformTech11110,
+.lifeformsprite.sprite_small.lifeformTech11111,
+.lifeformsprite.sprite_small.lifeformTech11112
+{
+    background-position-y: -500px;
+}
+.lifeformsprite.sprite_small.lifeformTech12101,
+.lifeformsprite.sprite_small.lifeformTech12102,
+.lifeformsprite.sprite_small.lifeformTech12103,
+.lifeformsprite.sprite_small.lifeformTech12104,
+.lifeformsprite.sprite_small.lifeformTech12105,
+.lifeformsprite.sprite_small.lifeformTech12106,
+.lifeformsprite.sprite_small.lifeformTech12107,
+.lifeformsprite.sprite_small.lifeformTech12108,
+.lifeformsprite.sprite_small.lifeformTech12109,
+.lifeformsprite.sprite_small.lifeformTech12110,
+.lifeformsprite.sprite_small.lifeformTech12111,
+.lifeformsprite.sprite_small.lifeformTech12112
+{
+    background-position-y: -1980px;
+}
+.lifeformsprite.sprite_small.lifeformTech13101,
+.lifeformsprite.sprite_small.lifeformTech13102,
+.lifeformsprite.sprite_small.lifeformTech13103,
+.lifeformsprite.sprite_small.lifeformTech13104,
+.lifeformsprite.sprite_small.lifeformTech13105,
+.lifeformsprite.sprite_small.lifeformTech13106,
+.lifeformsprite.sprite_small.lifeformTech13107,
+.lifeformsprite.sprite_small.lifeformTech13108,
+.lifeformsprite.sprite_small.lifeformTech13109,
+.lifeformsprite.sprite_small.lifeformTech13110,
+.lifeformsprite.sprite_small.lifeformTech13111,
+.lifeformsprite.sprite_small.lifeformTech13112
+{
+    background-position-y: -3460px;
+}
+.lifeformsprite.sprite_small.lifeformTech14101,
+.lifeformsprite.sprite_small.lifeformTech14102,
+.lifeformsprite.sprite_small.lifeformTech14103,
+.lifeformsprite.sprite_small.lifeformTech14104,
+.lifeformsprite.sprite_small.lifeformTech14105,
+.lifeformsprite.sprite_small.lifeformTech14106,
+.lifeformsprite.sprite_small.lifeformTech14107,
+.lifeformsprite.sprite_small.lifeformTech14108,
+.lifeformsprite.sprite_small.lifeformTech14109,
+.lifeformsprite.sprite_small.lifeformTech14110,
+.lifeformsprite.sprite_small.lifeformTech14111,
+.lifeformsprite.sprite_small.lifeformTech14112
+{
+    background-position-y: -4940px;
+}
+.lifeformsprite.sprite_small.lifeformTech11101,
+.lifeformsprite.sprite_small.lifeformTech12101,
+.lifeformsprite.sprite_small.lifeformTech13101,
+.lifeformsprite.sprite_small.lifeformTech14101 {
+    background-position-x: 0;
+}
+.lifeformsprite.sprite_small.lifeformTech11102,
+.lifeformsprite.sprite_small.lifeformTech12102,
+.lifeformsprite.sprite_small.lifeformTech13102,
+.lifeformsprite.sprite_small.lifeformTech14102 {
+    background-position-x: -80px;
+}
+.lifeformsprite.sprite_small.lifeformTech11103,
+.lifeformsprite.sprite_small.lifeformTech12103,
+.lifeformsprite.sprite_small.lifeformTech13103,
+.lifeformsprite.sprite_small.lifeformTech14103 {
+    background-position-x: -160px;
+}
+.lifeformsprite.sprite_small.lifeformTech11104,
+.lifeformsprite.sprite_small.lifeformTech12104,
+.lifeformsprite.sprite_small.lifeformTech13104,
+.lifeformsprite.sprite_small.lifeformTech14104 {
+    background-position-x: -240px;
+}
+.lifeformsprite.sprite_small.lifeformTech11105,
+.lifeformsprite.sprite_small.lifeformTech12105,
+.lifeformsprite.sprite_small.lifeformTech13105,
+.lifeformsprite.sprite_small.lifeformTech14105 {
+    background-position-x: -320px;
+}
+.lifeformsprite.sprite_small.lifeformTech11106,
+.lifeformsprite.sprite_small.lifeformTech12106,
+.lifeformsprite.sprite_small.lifeformTech13106,
+.lifeformsprite.sprite_small.lifeformTech14106 {
+    background-position-x: -400px;
+}
+.lifeformsprite.sprite_small.lifeformTech11107,
+.lifeformsprite.sprite_small.lifeformTech12107,
+.lifeformsprite.sprite_small.lifeformTech13107,
+.lifeformsprite.sprite_small.lifeformTech14107 {
+    background-position-x: -480px;
+}
+.lifeformsprite.sprite_small.lifeformTech11108,
+.lifeformsprite.sprite_small.lifeformTech12108,
+.lifeformsprite.sprite_small.lifeformTech13108,
+.lifeformsprite.sprite_small.lifeformTech14108 {
+    background-position-x: -560px;
+}
+.lifeformsprite.sprite_small.lifeformTech11109,
+.lifeformsprite.sprite_small.lifeformTech12109,
+.lifeformsprite.sprite_small.lifeformTech13109,
+.lifeformsprite.sprite_small.lifeformTech14109 {
+    background-position-x: -640px;
+}
+.lifeformsprite.sprite_small.lifeformTech11110,
+.lifeformsprite.sprite_small.lifeformTech12110,
+.lifeformsprite.sprite_small.lifeformTech13110,
+.lifeformsprite.sprite_small.lifeformTech14110 {
+    background-position-x: -720px;
+}
+.lifeformsprite.sprite_small.lifeformTech11111,
+.lifeformsprite.sprite_small.lifeformTech12111,
+.lifeformsprite.sprite_small.lifeformTech13111,
+.lifeformsprite.sprite_small.lifeformTech14111 {
+    background-position-x: -800px;
+}
+.lifeformsprite.sprite_small.lifeformTech11112,
+.lifeformsprite.sprite_small.lifeformTech12112,
+.lifeformsprite.sprite_small.lifeformTech13112,
+.lifeformsprite.sprite_small.lifeformTech14112 {
+    background-position-x: -880px;
+}
+
+.queuePic.lifeformqueue {
+    width: 40px;
+    height: 40px;
+    background-size: 720px 1184px;
+}
+.queuePic.lifeformqueuetiny {
+    width: 28px;
+    height: 28px;
+    background-size: 504px 829px;
+}
+
+.queuePic.lifeformqueue.lifeformTech11101,
+.queuePic.lifeformqueue.lifeformTech11102,
+.queuePic.lifeformqueue.lifeformTech11103,
+.queuePic.lifeformqueue.lifeformTech11104,
+.queuePic.lifeformqueue.lifeformTech11105,
+.queuePic.lifeformqueue.lifeformTech11106,
+.queuePic.lifeformqueue.lifeformTech11107,
+.queuePic.lifeformqueue.lifeformTech11108,
+.queuePic.lifeformqueue.lifeformTech11109,
+.queuePic.lifeformqueue.lifeformTech11110,
+.queuePic.lifeformqueue.lifeformTech11111,
+.queuePic.lifeformqueue.lifeformTech11112
+{
+    background-position-y: 0;
+}
+.queuePic.lifeformqueue.lifeformTech12101,
+.queuePic.lifeformqueue.lifeformTech12102,
+.queuePic.lifeformqueue.lifeformTech12103,
+.queuePic.lifeformqueue.lifeformTech12104,
+.queuePic.lifeformqueue.lifeformTech12105,
+.queuePic.lifeformqueue.lifeformTech12106,
+.queuePic.lifeformqueue.lifeformTech12107,
+.queuePic.lifeformqueue.lifeformTech12108,
+.queuePic.lifeformqueue.lifeformTech12109,
+.queuePic.lifeformqueue.lifeformTech12110,
+.queuePic.lifeformqueue.lifeformTech12111,
+.queuePic.lifeformqueue.lifeformTech12112
+{
+    background-position-y: -296px;
+}
+.queuePic.lifeformqueue.lifeformTech13101,
+.queuePic.lifeformqueue.lifeformTech13102,
+.queuePic.lifeformqueue.lifeformTech13103,
+.queuePic.lifeformqueue.lifeformTech13104,
+.queuePic.lifeformqueue.lifeformTech13105,
+.queuePic.lifeformqueue.lifeformTech13106,
+.queuePic.lifeformqueue.lifeformTech13107,
+.queuePic.lifeformqueue.lifeformTech13108,
+.queuePic.lifeformqueue.lifeformTech13109,
+.queuePic.lifeformqueue.lifeformTech13110,
+.queuePic.lifeformqueue.lifeformTech13111,
+.queuePic.lifeformqueue.lifeformTech13112
+{
+    background-position-y: -592px;
+}
+.queuePic.lifeformqueue.lifeformTech14101,
+.queuePic.lifeformqueue.lifeformTech14102,
+.queuePic.lifeformqueue.lifeformTech14103,
+.queuePic.lifeformqueue.lifeformTech14104,
+.queuePic.lifeformqueue.lifeformTech14105,
+.queuePic.lifeformqueue.lifeformTech14106,
+.queuePic.lifeformqueue.lifeformTech14107,
+.queuePic.lifeformqueue.lifeformTech14108,
+.queuePic.lifeformqueue.lifeformTech14109,
+.queuePic.lifeformqueue.lifeformTech14110,
+.queuePic.lifeformqueue.lifeformTech14111,
+.queuePic.lifeformqueue.lifeformTech14112
+{
+    background-position-y: -888px;
+}
+.queuePic.lifeformqueue.lifeformTech11101,
+.queuePic.lifeformqueue.lifeformTech12101,
+.queuePic.lifeformqueue.lifeformTech13101,
+.queuePic.lifeformqueue.lifeformTech14101 {
+    background-position-x: 0;
+}
+.queuePic.lifeformqueue.lifeformTech11102,
+.queuePic.lifeformqueue.lifeformTech12102,
+.queuePic.lifeformqueue.lifeformTech13102,
+.queuePic.lifeformqueue.lifeformTech14102 {
+    background-position-x: -40px;
+}
+.queuePic.lifeformqueue.lifeformTech11103,
+.queuePic.lifeformqueue.lifeformTech12103,
+.queuePic.lifeformqueue.lifeformTech13103,
+.queuePic.lifeformqueue.lifeformTech14103 {
+    background-position-x: -80px;
+}
+.queuePic.lifeformqueue.lifeformTech11104,
+.queuePic.lifeformqueue.lifeformTech12104,
+.queuePic.lifeformqueue.lifeformTech13104,
+.queuePic.lifeformqueue.lifeformTech14104 {
+    background-position-x: -120px;
+}
+.queuePic.lifeformqueue.lifeformTech11105,
+.queuePic.lifeformqueue.lifeformTech12105,
+.queuePic.lifeformqueue.lifeformTech13105,
+.queuePic.lifeformqueue.lifeformTech14105 {
+    background-position-x: -160px;
+}
+.queuePic.lifeformqueue.lifeformTech11106,
+.queuePic.lifeformqueue.lifeformTech12106,
+.queuePic.lifeformqueue.lifeformTech13106,
+.queuePic.lifeformqueue.lifeformTech14106 {
+    background-position-x: -200px;
+}
+.queuePic.lifeformqueue.lifeformTech11107,
+.queuePic.lifeformqueue.lifeformTech12107,
+.queuePic.lifeformqueue.lifeformTech13107,
+.queuePic.lifeformqueue.lifeformTech14107 {
+    background-position-x: -240px;
+}
+.queuePic.lifeformqueue.lifeformTech11108,
+.queuePic.lifeformqueue.lifeformTech12108,
+.queuePic.lifeformqueue.lifeformTech13108,
+.queuePic.lifeformqueue.lifeformTech14108 {
+    background-position-x: -280px;
+}
+.queuePic.lifeformqueue.lifeformTech11109,
+.queuePic.lifeformqueue.lifeformTech12109,
+.queuePic.lifeformqueue.lifeformTech13109,
+.queuePic.lifeformqueue.lifeformTech14109 {
+    background-position-x: -320px;
+}
+.queuePic.lifeformqueue.lifeformTech11110,
+.queuePic.lifeformqueue.lifeformTech12110,
+.queuePic.lifeformqueue.lifeformTech13110,
+.queuePic.lifeformqueue.lifeformTech14110 {
+    background-position-x: -360px;
+}
+.queuePic.lifeformqueue.lifeformTech11111,
+.queuePic.lifeformqueue.lifeformTech12111,
+.queuePic.lifeformqueue.lifeformTech13111,
+.queuePic.lifeformqueue.lifeformTech14111 {
+    background-position-x: -400px;
+}
+.queuePic.lifeformqueue.lifeformTech11112,
+.queuePic.lifeformqueue.lifeformTech12112,
+.queuePic.lifeformqueue.lifeformTech13112,
+.queuePic.lifeformqueue.lifeformTech14112 {
+    background-position-x: -440px;
+}
+
+.queuePic.lifeformqueuetiny.lifeformTech11101,
+.queuePic.lifeformqueuetiny.lifeformTech11102,
+.queuePic.lifeformqueuetiny.lifeformTech11103,
+.queuePic.lifeformqueuetiny.lifeformTech11104,
+.queuePic.lifeformqueuetiny.lifeformTech11105,
+.queuePic.lifeformqueuetiny.lifeformTech11106,
+.queuePic.lifeformqueuetiny.lifeformTech11107,
+.queuePic.lifeformqueuetiny.lifeformTech11108,
+.queuePic.lifeformqueuetiny.lifeformTech11109,
+.queuePic.lifeformqueuetiny.lifeformTech11110,
+.queuePic.lifeformqueuetiny.lifeformTech11111,
+.queuePic.lifeformqueuetiny.lifeformTech11112
+{
+    background-position-y: 0;
+}
+.queuePic.lifeformqueuetiny.lifeformTech12101,
+.queuePic.lifeformqueuetiny.lifeformTech12102,
+.queuePic.lifeformqueuetiny.lifeformTech12103,
+.queuePic.lifeformqueuetiny.lifeformTech12104,
+.queuePic.lifeformqueuetiny.lifeformTech12105,
+.queuePic.lifeformqueuetiny.lifeformTech12106,
+.queuePic.lifeformqueuetiny.lifeformTech12107,
+.queuePic.lifeformqueuetiny.lifeformTech12108,
+.queuePic.lifeformqueuetiny.lifeformTech12109,
+.queuePic.lifeformqueuetiny.lifeformTech12110,
+.queuePic.lifeformqueuetiny.lifeformTech12111,
+.queuePic.lifeformqueuetiny.lifeformTech12112
+{
+    background-position-y: -207px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech13101,
+.queuePic.lifeformqueuetiny.lifeformTech13102,
+.queuePic.lifeformqueuetiny.lifeformTech13103,
+.queuePic.lifeformqueuetiny.lifeformTech13104,
+.queuePic.lifeformqueuetiny.lifeformTech13105,
+.queuePic.lifeformqueuetiny.lifeformTech13106,
+.queuePic.lifeformqueuetiny.lifeformTech13107,
+.queuePic.lifeformqueuetiny.lifeformTech13108,
+.queuePic.lifeformqueuetiny.lifeformTech13109,
+.queuePic.lifeformqueuetiny.lifeformTech13110,
+.queuePic.lifeformqueuetiny.lifeformTech13111,
+.queuePic.lifeformqueuetiny.lifeformTech13112
+{
+    background-position-y: -414px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech14101,
+.queuePic.lifeformqueuetiny.lifeformTech14102,
+.queuePic.lifeformqueuetiny.lifeformTech14103,
+.queuePic.lifeformqueuetiny.lifeformTech14104,
+.queuePic.lifeformqueuetiny.lifeformTech14105,
+.queuePic.lifeformqueuetiny.lifeformTech14106,
+.queuePic.lifeformqueuetiny.lifeformTech14107,
+.queuePic.lifeformqueuetiny.lifeformTech14108,
+.queuePic.lifeformqueuetiny.lifeformTech14109,
+.queuePic.lifeformqueuetiny.lifeformTech14110,
+.queuePic.lifeformqueuetiny.lifeformTech14111,
+.queuePic.lifeformqueuetiny.lifeformTech14112
+{
+    background-position-y: -621px;
+}
+
+.queuePic.lifeformqueuetiny.lifeformTech11101,
+.queuePic.lifeformqueuetiny.lifeformTech12101,
+.queuePic.lifeformqueuetiny.lifeformTech13101,
+.queuePic.lifeformqueuetiny.lifeformTech14101 {
+    background-position-x: 0;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11102,
+.queuePic.lifeformqueuetiny.lifeformTech12102,
+.queuePic.lifeformqueuetiny.lifeformTech13102,
+.queuePic.lifeformqueuetiny.lifeformTech14102 {
+    background-position-x: -28px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11103,
+.queuePic.lifeformqueuetiny.lifeformTech12103,
+.queuePic.lifeformqueuetiny.lifeformTech13103,
+.queuePic.lifeformqueuetiny.lifeformTech14103 {
+    background-position-x: -56px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11104,
+.queuePic.lifeformqueuetiny.lifeformTech12104,
+.queuePic.lifeformqueuetiny.lifeformTech13104,
+.queuePic.lifeformqueuetiny.lifeformTech14104 {
+    background-position-x: -84px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11105,
+.queuePic.lifeformqueuetiny.lifeformTech12105,
+.queuePic.lifeformqueuetiny.lifeformTech13105,
+.queuePic.lifeformqueuetiny.lifeformTech14105 {
+    background-position-x: -112px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11106,
+.queuePic.lifeformqueuetiny.lifeformTech12106,
+.queuePic.lifeformqueuetiny.lifeformTech13106,
+.queuePic.lifeformqueuetiny.lifeformTech14106 {
+    background-position-x: -140px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11107,
+.queuePic.lifeformqueuetiny.lifeformTech12107,
+.queuePic.lifeformqueuetiny.lifeformTech13107,
+.queuePic.lifeformqueuetiny.lifeformTech14107 {
+    background-position-x: -168px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11108,
+.queuePic.lifeformqueuetiny.lifeformTech12108,
+.queuePic.lifeformqueuetiny.lifeformTech13108,
+.queuePic.lifeformqueuetiny.lifeformTech14108 {
+    background-position-x: -196px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11109,
+.queuePic.lifeformqueuetiny.lifeformTech12109,
+.queuePic.lifeformqueuetiny.lifeformTech13109,
+.queuePic.lifeformqueuetiny.lifeformTech14109 {
+    background-position-x: -224px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11110,
+.queuePic.lifeformqueuetiny.lifeformTech12110,
+.queuePic.lifeformqueuetiny.lifeformTech13110,
+.queuePic.lifeformqueuetiny.lifeformTech14110 {
+    background-position-x: -252px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11111,
+.queuePic.lifeformqueuetiny.lifeformTech12111,
+.queuePic.lifeformqueuetiny.lifeformTech13111,
+.queuePic.lifeformqueuetiny.lifeformTech14111 {
+    background-position-x: -280px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11112,
+.queuePic.lifeformqueuetiny.lifeformTech12112,
+.queuePic.lifeformqueuetiny.lifeformTech13112,
+.queuePic.lifeformqueuetiny.lifeformTech14112 {
+    background-position-x: -308px;
+}
+
+/* ~~~~~ LIFEFORM1 ~~~~~ */
+/* ~~~~~ Researches ~~~~~ */
+/* Large */
+.lifeformsprite_before.lifeformTech11201::before,
+.lifeformsprite_before.lifeformTech11202::before,
+.lifeformsprite_before.lifeformTech11203::before,
+.lifeformsprite_before.lifeformTech11204::before,
+.lifeformsprite_before.lifeformTech11205::before,
+.lifeformsprite_before.lifeformTech11206::before,
+.lifeformsprite_before.lifeformTech11207::before,
+.lifeformsprite_before.lifeformTech11208::before,
+.lifeformsprite_before.lifeformTech11209::before,
+.lifeformsprite_before.lifeformTech11210::before,
+.lifeformsprite_before.lifeformTech11211::before,
+.lifeformsprite_before.lifeformTech11212::before,
+.lifeformsprite_before.lifeformTech11213::before,
+.lifeformsprite_before.lifeformTech11214::before,
+.lifeformsprite_before.lifeformTech11215::before,
+.lifeformsprite_before.lifeformTech11216::before,
+.lifeformsprite_before.lifeformTech11217::before,
+.lifeformsprite_before.lifeformTech11218::before,
+.lifeformsprite_after.lifeformTech11201::after,
+.lifeformsprite_after.lifeformTech11202::after,
+.lifeformsprite_after.lifeformTech11203::after,
+.lifeformsprite_after.lifeformTech11204::after,
+.lifeformsprite_after.lifeformTech11205::after,
+.lifeformsprite_after.lifeformTech11206::after,
+.lifeformsprite_after.lifeformTech11207::after,
+.lifeformsprite_after.lifeformTech11208::after,
+.lifeformsprite_after.lifeformTech11209::after,
+.lifeformsprite_after.lifeformTech11210::after,
+.lifeformsprite_after.lifeformTech11211::after,
+.lifeformsprite_after.lifeformTech11212::after,
+.lifeformsprite_after.lifeformTech11213::after,
+.lifeformsprite_after.lifeformTech11214::after,
+.lifeformsprite_after.lifeformTech11215::after,
+.lifeformsprite_after.lifeformTech11216::after,
+.lifeformsprite_after.lifeformTech11217::after,
+.lifeformsprite_after.lifeformTech11218::after,
+.lifeformsprite.sprite_large.lifeformTech11201,
+.lifeformsprite.sprite_large.lifeformTech11202,
+.lifeformsprite.sprite_large.lifeformTech11203,
+.lifeformsprite.sprite_large.lifeformTech11204,
+.lifeformsprite.sprite_large.lifeformTech11205,
+.lifeformsprite.sprite_large.lifeformTech11206,
+.lifeformsprite.sprite_large.lifeformTech11207,
+.lifeformsprite.sprite_large.lifeformTech11208,
+.lifeformsprite.sprite_large.lifeformTech11209,
+.lifeformsprite.sprite_large.lifeformTech11210,
+.lifeformsprite.sprite_large.lifeformTech11211,
+.lifeformsprite.sprite_large.lifeformTech11212,
+.lifeformsprite.sprite_large.lifeformTech11213,
+.lifeformsprite.sprite_large.lifeformTech11214,
+.lifeformsprite.sprite_large.lifeformTech11215,
+.lifeformsprite.sprite_large.lifeformTech11216,
+.lifeformsprite.sprite_large.lifeformTech11217,
+.lifeformsprite.sprite_large.lifeformTech11218
+{
+    background-position-y: -740px; /*todo fix all coordinates*/
+}
+.lifeformsprite_before.lifeformTech12201::before,
+.lifeformsprite_before.lifeformTech12202::before,
+.lifeformsprite_before.lifeformTech12203::before,
+.lifeformsprite_before.lifeformTech12204::before,
+.lifeformsprite_before.lifeformTech12205::before,
+.lifeformsprite_before.lifeformTech12206::before,
+.lifeformsprite_before.lifeformTech12207::before,
+.lifeformsprite_before.lifeformTech12208::before,
+.lifeformsprite_before.lifeformTech12209::before,
+.lifeformsprite_before.lifeformTech12210::before,
+.lifeformsprite_before.lifeformTech12211::before,
+.lifeformsprite_before.lifeformTech12212::before,
+.lifeformsprite_before.lifeformTech12213::before,
+.lifeformsprite_before.lifeformTech12214::before,
+.lifeformsprite_before.lifeformTech12215::before,
+.lifeformsprite_before.lifeformTech12216::before,
+.lifeformsprite_before.lifeformTech12217::before,
+.lifeformsprite_before.lifeformTech12218::before,
+.lifeformsprite_after.lifeformTech12201::after,
+.lifeformsprite_after.lifeformTech12202::after,
+.lifeformsprite_after.lifeformTech12203::after,
+.lifeformsprite_after.lifeformTech12204::after,
+.lifeformsprite_after.lifeformTech12205::after,
+.lifeformsprite_after.lifeformTech12206::after,
+.lifeformsprite_after.lifeformTech12207::after,
+.lifeformsprite_after.lifeformTech12208::after,
+.lifeformsprite_after.lifeformTech12209::after,
+.lifeformsprite_after.lifeformTech12210::after,
+.lifeformsprite_after.lifeformTech12211::after,
+.lifeformsprite_after.lifeformTech12212::after,
+.lifeformsprite_after.lifeformTech12213::after,
+.lifeformsprite_after.lifeformTech12214::after,
+.lifeformsprite_after.lifeformTech12215::after,
+.lifeformsprite_after.lifeformTech12216::after,
+.lifeformsprite_after.lifeformTech12217::after,
+.lifeformsprite_after.lifeformTech12218::after,
+.lifeformsprite.sprite_large.lifeformTech12201,
+.lifeformsprite.sprite_large.lifeformTech12202,
+.lifeformsprite.sprite_large.lifeformTech12203,
+.lifeformsprite.sprite_large.lifeformTech12204,
+.lifeformsprite.sprite_large.lifeformTech12205,
+.lifeformsprite.sprite_large.lifeformTech12206,
+.lifeformsprite.sprite_large.lifeformTech12207,
+.lifeformsprite.sprite_large.lifeformTech12208,
+.lifeformsprite.sprite_large.lifeformTech12209,
+.lifeformsprite.sprite_large.lifeformTech12210,
+.lifeformsprite.sprite_large.lifeformTech12211,
+.lifeformsprite.sprite_large.lifeformTech12212,
+.lifeformsprite.sprite_large.lifeformTech12213,
+.lifeformsprite.sprite_large.lifeformTech12214,
+.lifeformsprite.sprite_large.lifeformTech12215,
+.lifeformsprite.sprite_large.lifeformTech12216,
+.lifeformsprite.sprite_large.lifeformTech12217,
+.lifeformsprite.sprite_large.lifeformTech12218
+{
+    background-position-y: -2220px;
+}
+.lifeformsprite_before.lifeformTech13201::before,
+.lifeformsprite_before.lifeformTech13202::before,
+.lifeformsprite_before.lifeformTech13203::before,
+.lifeformsprite_before.lifeformTech13204::before,
+.lifeformsprite_before.lifeformTech13205::before,
+.lifeformsprite_before.lifeformTech13206::before,
+.lifeformsprite_before.lifeformTech13207::before,
+.lifeformsprite_before.lifeformTech13208::before,
+.lifeformsprite_before.lifeformTech13209::before,
+.lifeformsprite_before.lifeformTech13210::before,
+.lifeformsprite_before.lifeformTech13211::before,
+.lifeformsprite_before.lifeformTech13212::before,
+.lifeformsprite_before.lifeformTech13213::before,
+.lifeformsprite_before.lifeformTech13214::before,
+.lifeformsprite_before.lifeformTech13215::before,
+.lifeformsprite_before.lifeformTech13216::before,
+.lifeformsprite_before.lifeformTech13217::before,
+.lifeformsprite_before.lifeformTech13218::before,
+.lifeformsprite_after.lifeformTech13201::after,
+.lifeformsprite_after.lifeformTech13202::after,
+.lifeformsprite_after.lifeformTech13203::after,
+.lifeformsprite_after.lifeformTech13204::after,
+.lifeformsprite_after.lifeformTech13205::after,
+.lifeformsprite_after.lifeformTech13206::after,
+.lifeformsprite_after.lifeformTech13207::after,
+.lifeformsprite_after.lifeformTech13208::after,
+.lifeformsprite_after.lifeformTech13209::after,
+.lifeformsprite_after.lifeformTech13210::after,
+.lifeformsprite_after.lifeformTech13211::after,
+.lifeformsprite_after.lifeformTech13212::after,
+.lifeformsprite_after.lifeformTech13213::after,
+.lifeformsprite_after.lifeformTech13214::after,
+.lifeformsprite_after.lifeformTech13215::after,
+.lifeformsprite_after.lifeformTech13216::after,
+.lifeformsprite_after.lifeformTech13217::after,
+.lifeformsprite_after.lifeformTech13218::after,
+.lifeformsprite.sprite_large.lifeformTech13201,
+.lifeformsprite.sprite_large.lifeformTech13202,
+.lifeformsprite.sprite_large.lifeformTech13203,
+.lifeformsprite.sprite_large.lifeformTech13204,
+.lifeformsprite.sprite_large.lifeformTech13205,
+.lifeformsprite.sprite_large.lifeformTech13206,
+.lifeformsprite.sprite_large.lifeformTech13207,
+.lifeformsprite.sprite_large.lifeformTech13208,
+.lifeformsprite.sprite_large.lifeformTech13209,
+.lifeformsprite.sprite_large.lifeformTech13210,
+.lifeformsprite.sprite_large.lifeformTech13211,
+.lifeformsprite.sprite_large.lifeformTech13212,
+.lifeformsprite.sprite_large.lifeformTech13213,
+.lifeformsprite.sprite_large.lifeformTech13214,
+.lifeformsprite.sprite_large.lifeformTech13215,
+.lifeformsprite.sprite_large.lifeformTech13216,
+.lifeformsprite.sprite_large.lifeformTech13217,
+.lifeformsprite.sprite_large.lifeformTech13218
+{
+    background-position-y: -3700px;
+}
+.lifeformsprite_before.lifeformTech14201::before,
+.lifeformsprite_before.lifeformTech14202::before,
+.lifeformsprite_before.lifeformTech14203::before,
+.lifeformsprite_before.lifeformTech14204::before,
+.lifeformsprite_before.lifeformTech14205::before,
+.lifeformsprite_before.lifeformTech14206::before,
+.lifeformsprite_before.lifeformTech14207::before,
+.lifeformsprite_before.lifeformTech14208::before,
+.lifeformsprite_before.lifeformTech14209::before,
+.lifeformsprite_before.lifeformTech14210::before,
+.lifeformsprite_before.lifeformTech14211::before,
+.lifeformsprite_before.lifeformTech14212::before,
+.lifeformsprite_before.lifeformTech14213::before,
+.lifeformsprite_before.lifeformTech14214::before,
+.lifeformsprite_before.lifeformTech14215::before,
+.lifeformsprite_before.lifeformTech14216::before,
+.lifeformsprite_before.lifeformTech14217::before,
+.lifeformsprite_before.lifeformTech14218::before,
+.lifeformsprite_after.lifeformTech14201::after,
+.lifeformsprite_after.lifeformTech14202::after,
+.lifeformsprite_after.lifeformTech14203::after,
+.lifeformsprite_after.lifeformTech14204::after,
+.lifeformsprite_after.lifeformTech14205::after,
+.lifeformsprite_after.lifeformTech14206::after,
+.lifeformsprite_after.lifeformTech14207::after,
+.lifeformsprite_after.lifeformTech14208::after,
+.lifeformsprite_after.lifeformTech14209::after,
+.lifeformsprite_after.lifeformTech14210::after,
+.lifeformsprite_after.lifeformTech14211::after,
+.lifeformsprite_after.lifeformTech14212::after,
+.lifeformsprite_after.lifeformTech14213::after,
+.lifeformsprite_after.lifeformTech14214::after,
+.lifeformsprite_after.lifeformTech14215::after,
+.lifeformsprite_after.lifeformTech14216::after,
+.lifeformsprite_after.lifeformTech14217::after,
+.lifeformsprite_after.lifeformTech14218::after,
+.lifeformsprite.sprite_large.lifeformTech14201,
+.lifeformsprite.sprite_large.lifeformTech14202,
+.lifeformsprite.sprite_large.lifeformTech14203,
+.lifeformsprite.sprite_large.lifeformTech14204,
+.lifeformsprite.sprite_large.lifeformTech14205,
+.lifeformsprite.sprite_large.lifeformTech14206,
+.lifeformsprite.sprite_large.lifeformTech14207,
+.lifeformsprite.sprite_large.lifeformTech14208,
+.lifeformsprite.sprite_large.lifeformTech14209,
+.lifeformsprite.sprite_large.lifeformTech14210,
+.lifeformsprite.sprite_large.lifeformTech14211,
+.lifeformsprite.sprite_large.lifeformTech14212,
+.lifeformsprite.sprite_large.lifeformTech14213,
+.lifeformsprite.sprite_large.lifeformTech14214,
+.lifeformsprite.sprite_large.lifeformTech14215,
+.lifeformsprite.sprite_large.lifeformTech14216,
+.lifeformsprite.sprite_large.lifeformTech14217,
+.lifeformsprite.sprite_large.lifeformTech14218
+{
+    background-position-y: -5180px;
+}
+
+.lifeformsprite_before.lifeformTech11201::before,
+.lifeformsprite_after.lifeformTech11201::after,
+.lifeformsprite.sprite_large.lifeformTech11201,
+.lifeformsprite_before.lifeformTech12101::before,
+.lifeformsprite_after.lifeformTech12101::after,
+.lifeformsprite.sprite_large.lifeformTech12201,
+.lifeformsprite_before.lifeformTech13201::before,
+.lifeformsprite_after.lifeformTech13201::after,
+.lifeformsprite.sprite_large.lifeformTech13201,
+.lifeformsprite_before.lifeformTech14201::before,
+.lifeformsprite_after.lifeformTech14201::after,
+.lifeformsprite.sprite_large.lifeformTech14201 {
+    background-position-x: 0;
+}
+.lifeformsprite_before.lifeformTech11202::before,
+.lifeformsprite_after.lifeformTech11202::after,
+.lifeformsprite.sprite_large.lifeformTech11202,
+.lifeformsprite_before.lifeformTech12202::before,
+.lifeformsprite_after.lifeformTech12202::after,
+.lifeformsprite.sprite_large.lifeformTech12202,
+.lifeformsprite_before.lifeformTech13202::before,
+.lifeformsprite_after.lifeformTech13202::after,
+.lifeformsprite.sprite_large.lifeformTech13202,
+.lifeformsprite_before.lifeformTech14202::before,
+.lifeformsprite_after.lifeformTech14202::after,
+.lifeformsprite.sprite_large.lifeformTech14202 {
+    background-position-x: -200px;
+}
+.lifeformsprite_before.lifeformTech11203::before,
+.lifeformsprite_after.lifeformTech11203::after,
+.lifeformsprite.sprite_large.lifeformTech11203,
+.lifeformsprite_before.lifeformTech12203::before,
+.lifeformsprite_after.lifeformTech12203::after,
+.lifeformsprite.sprite_large.lifeformTech12203,
+.lifeformsprite_before.lifeformTech13203::before,
+.lifeformsprite_after.lifeformTech13203::after,
+.lifeformsprite.sprite_large.lifeformTech13203,
+.lifeformsprite_before.lifeformTech14203::before,
+.lifeformsprite_after.lifeformTech14203::after,
+.lifeformsprite.sprite_large.lifeformTech14203 {
+    background-position-x: -400px;
+}
+.lifeformsprite_before.lifeformTech11204::before,
+.lifeformsprite_after.lifeformTech11204::after,
+.lifeformsprite.sprite_large.lifeformTech11204,
+.lifeformsprite_before.lifeformTech12204::before,
+.lifeformsprite_after.lifeformTech12204::after,
+.lifeformsprite.sprite_large.lifeformTech12204,
+.lifeformsprite_before.lifeformTech13204::before,
+.lifeformsprite_after.lifeformTech13204::after,
+.lifeformsprite.sprite_large.lifeformTech13204,
+.lifeformsprite_before.lifeformTech14204::before,
+.lifeformsprite_after.lifeformTech14204::after,
+.lifeformsprite.sprite_large.lifeformTech14204 {
+    background-position-x: -600px;
+}
+.lifeformsprite_before.lifeformTech11205::before,
+.lifeformsprite_after.lifeformTech11205::after,
+.lifeformsprite.sprite_large.lifeformTech11205,
+.lifeformsprite_before.lifeformTech12205::before,
+.lifeformsprite_after.lifeformTech12205::after,
+.lifeformsprite.sprite_large.lifeformTech12205,
+.lifeformsprite_before.lifeformTech13205::before,
+.lifeformsprite_after.lifeformTech13205::after,
+.lifeformsprite.sprite_large.lifeformTech13205,
+.lifeformsprite_before.lifeformTech14205::before,
+.lifeformsprite_after.lifeformTech14205::after,
+.lifeformsprite.sprite_large.lifeformTech14205 {
+    background-position-x: -800px;
+}
+.lifeformsprite_before.lifeformTech11206::before,
+.lifeformsprite_after.lifeformTech11206::after,
+.lifeformsprite.sprite_large.lifeformTech11206,
+.lifeformsprite_before.lifeformTech12206::before,
+.lifeformsprite_after.lifeformTech12206::after,
+.lifeformsprite.sprite_large.lifeformTech12206,
+.lifeformsprite_before.lifeformTech13206::before,
+.lifeformsprite_after.lifeformTech13206::after,
+.lifeformsprite.sprite_large.lifeformTech13206,
+.lifeformsprite_before.lifeformTech14206::before,
+.lifeformsprite_after.lifeformTech14206::after,
+.lifeformsprite.sprite_large.lifeformTech14206 {
+    background-position-x: -1000px;
+}
+.lifeformsprite_before.lifeformTech11207::before,
+.lifeformsprite_after.lifeformTech11207::after,
+.lifeformsprite.sprite_large.lifeformTech11207,
+.lifeformsprite_before.lifeformTech12207::before,
+.lifeformsprite_after.lifeformTech12207::after,
+.lifeformsprite.sprite_large.lifeformTech12207,
+.lifeformsprite_before.lifeformTech13207::before,
+.lifeformsprite_after.lifeformTech13207::after,
+.lifeformsprite.sprite_large.lifeformTech13207,
+.lifeformsprite_before.lifeformTech14207::before,
+.lifeformsprite_after.lifeformTech14207::after,
+.lifeformsprite.sprite_large.lifeformTech14207 {
+    background-position-x: -1200px;
+}
+.lifeformsprite_before.lifeformTech11208::before,
+.lifeformsprite_after.lifeformTech11208::after,
+.lifeformsprite.sprite_large.lifeformTech11208,
+.lifeformsprite_before.lifeformTech12208::before,
+.lifeformsprite_after.lifeformTech12208::after,
+.lifeformsprite.sprite_large.lifeformTech12208,
+.lifeformsprite_before.lifeformTech13208::before,
+.lifeformsprite_after.lifeformTech13208::after,
+.lifeformsprite.sprite_large.lifeformTech13208,
+.lifeformsprite_before.lifeformTech14208::before,
+.lifeformsprite_after.lifeformTech14208::after,
+.lifeformsprite.sprite_large.lifeformTech14208 {
+    background-position-x: -1400px;
+}
+.lifeformsprite_before.lifeformTech11209::before,
+.lifeformsprite_after.lifeformTech11209::after,
+.lifeformsprite.sprite_large.lifeformTech11209,
+.lifeformsprite_before.lifeformTech12209::before,
+.lifeformsprite_after.lifeformTech12209::after,
+.lifeformsprite.sprite_large.lifeformTech12209,
+.lifeformsprite_before.lifeformTech13209::before,
+.lifeformsprite_after.lifeformTech13209::after,
+.lifeformsprite.sprite_large.lifeformTech13209,
+.lifeformsprite_before.lifeformTech14209::before,
+.lifeformsprite_after.lifeformTech14209::after,
+.lifeformsprite.sprite_large.lifeformTech14209 {
+    background-position-x: -1600px;
+}
+.lifeformsprite_before.lifeformTech11210::before,
+.lifeformsprite_after.lifeformTech11210::after,
+.lifeformsprite.sprite_large.lifeformTech11210,
+.lifeformsprite_before.lifeformTech12210::before,
+.lifeformsprite_after.lifeformTech12210::after,
+.lifeformsprite.sprite_large.lifeformTech12210,
+.lifeformsprite_before.lifeformTech13210::before,
+.lifeformsprite_after.lifeformTech13210::after,
+.lifeformsprite.sprite_large.lifeformTech13210,
+.lifeformsprite_before.lifeformTech14210::before,
+.lifeformsprite_after.lifeformTech14210::after,
+.lifeformsprite.sprite_large.lifeformTech14210 {
+    background-position-x: -1800px;
+}
+.lifeformsprite_before.lifeformTech11211::before,
+.lifeformsprite_after.lifeformTech11211::after,
+.lifeformsprite.sprite_large.lifeformTech11211,
+.lifeformsprite_before.lifeformTech12211::before,
+.lifeformsprite_after.lifeformTech12211::after,
+.lifeformsprite.sprite_large.lifeformTech12211,
+.lifeformsprite_before.lifeformTech13211::before,
+.lifeformsprite_after.lifeformTech13211::after,
+.lifeformsprite.sprite_large.lifeformTech13211,
+.lifeformsprite_before.lifeformTech14211::before,
+.lifeformsprite_after.lifeformTech14211::after,
+.lifeformsprite.sprite_large.lifeformTech14211 {
+    background-position-x: -2000px;
+}
+.lifeformsprite_before.lifeformTech11212::before,
+.lifeformsprite_after.lifeformTech11212::after,
+.lifeformsprite.sprite_large.lifeformTech11212,
+.lifeformsprite_before.lifeformTech12212::before,
+.lifeformsprite_after.lifeformTech12212::after,
+.lifeformsprite.sprite_large.lifeformTech12212,
+.lifeformsprite_before.lifeformTech13212::before,
+.lifeformsprite_after.lifeformTech13212::after,
+.lifeformsprite.sprite_large.lifeformTech13212,
+.lifeformsprite_before.lifeformTech14212::before,
+.lifeformsprite_after.lifeformTech14212::after,
+.lifeformsprite.sprite_large.lifeformTech14212 {
+    background-position-x: -2200px;
+}
+.lifeformsprite_before.lifeformTech11213::before,
+.lifeformsprite_after.lifeformTech11213::after,
+.lifeformsprite.sprite_large.lifeformTech11213,
+.lifeformsprite_before.lifeformTech12213::before,
+.lifeformsprite_after.lifeformTech12213::after,
+.lifeformsprite.sprite_large.lifeformTech12213,
+.lifeformsprite_before.lifeformTech13213::before,
+.lifeformsprite_after.lifeformTech13213::after,
+.lifeformsprite.sprite_large.lifeformTech13213,
+.lifeformsprite_before.lifeformTech14213::before,
+.lifeformsprite_after.lifeformTech14213::after,
+.lifeformsprite.sprite_large.lifeformTech14213 {
+    background-position-x: -2400px;
+}
+.lifeformsprite_before.lifeformTech11214::before,
+.lifeformsprite_after.lifeformTech11214::after,
+.lifeformsprite.sprite_large.lifeformTech11214,
+.lifeformsprite_before.lifeformTech12214::before,
+.lifeformsprite_after.lifeformTech12214::after,
+.lifeformsprite.sprite_large.lifeformTech12214,
+.lifeformsprite_before.lifeformTech13214::before,
+.lifeformsprite_after.lifeformTech13214::after,
+.lifeformsprite.sprite_large.lifeformTech13214,
+.lifeformsprite_before.lifeformTech14214::before,
+.lifeformsprite_after.lifeformTech14214::after,
+.lifeformsprite.sprite_large.lifeformTech14214 {
+    background-position-x: -2600px;
+}
+.lifeformsprite_before.lifeformTech11215::before,
+.lifeformsprite_after.lifeformTech11215::after,
+.lifeformsprite.sprite_large.lifeformTech11215,
+.lifeformsprite_before.lifeformTech12215::before,
+.lifeformsprite_after.lifeformTech12215::after,
+.lifeformsprite.sprite_large.lifeformTech12215,
+.lifeformsprite_before.lifeformTech13215::before,
+.lifeformsprite_after.lifeformTech13215::after,
+.lifeformsprite.sprite_large.lifeformTech13215,
+.lifeformsprite_before.lifeformTech14215::before,
+.lifeformsprite_after.lifeformTech14215::after,
+.lifeformsprite.sprite_large.lifeformTech14215 {
+    background-position-x: -2800px;
+}
+.lifeformsprite_before.lifeformTech11216::before,
+.lifeformsprite_after.lifeformTech11216::after,
+.lifeformsprite.sprite_large.lifeformTech11216,
+.lifeformsprite_before.lifeformTech12216::before,
+.lifeformsprite_after.lifeformTech12216::after,
+.lifeformsprite.sprite_large.lifeformTech12216,
+.lifeformsprite_before.lifeformTech13216::before,
+.lifeformsprite_after.lifeformTech13216::after,
+.lifeformsprite.sprite_large.lifeformTech13216,
+.lifeformsprite_before.lifeformTech14216::before,
+.lifeformsprite_after.lifeformTech14216::after,
+.lifeformsprite.sprite_large.lifeformTech14216 {
+    background-position-x: -3000px;
+}
+.lifeformsprite_before.lifeformTech11217::before,
+.lifeformsprite_after.lifeformTech11217::after,
+.lifeformsprite.sprite_large.lifeformTech11217,
+.lifeformsprite_before.lifeformTech12217::before,
+.lifeformsprite_after.lifeformTech12217::after,
+.lifeformsprite.sprite_large.lifeformTech12217,
+.lifeformsprite_before.lifeformTech13217::before,
+.lifeformsprite_after.lifeformTech13217::after,
+.lifeformsprite.sprite_large.lifeformTech13217,
+.lifeformsprite_before.lifeformTech14217::before,
+.lifeformsprite_after.lifeformTech14217::after,
+.lifeformsprite.sprite_large.lifeformTech14217 {
+    background-position-x: -3200px;
+}
+.lifeformsprite_before.lifeformTech11218::before,
+.lifeformsprite_after.lifeformTech11218::after,
+.lifeformsprite.sprite_large.lifeformTech11218,
+.lifeformsprite_before.lifeformTech12218::before,
+.lifeformsprite_after.lifeformTech12218::after,
+.lifeformsprite.sprite_large.lifeformTech12218,
+.lifeformsprite_before.lifeformTech13218::before,
+.lifeformsprite_after.lifeformTech13218::after,
+.lifeformsprite.sprite_large.lifeformTech13218,
+.lifeformsprite_before.lifeformTech14218::before,
+.lifeformsprite_after.lifeformTech14218::after,
+.lifeformsprite.sprite_large.lifeformTech14218 {
+    background-position-x: -3400px;
+}
+
+
+
+
+/* Medium */
+.lifeformsprite.sprite_medium.lifeformTech11201,
+.lifeformsprite.sprite_medium.lifeformTech11202,
+.lifeformsprite.sprite_medium.lifeformTech11203,
+.lifeformsprite.sprite_medium.lifeformTech11204,
+.lifeformsprite.sprite_medium.lifeformTech11205,
+.lifeformsprite.sprite_medium.lifeformTech11206,
+.lifeformsprite.sprite_medium.lifeformTech11207,
+.lifeformsprite.sprite_medium.lifeformTech11208,
+.lifeformsprite.sprite_medium.lifeformTech11209,
+.lifeformsprite.sprite_medium.lifeformTech11210,
+.lifeformsprite.sprite_medium.lifeformTech11211,
+.lifeformsprite.sprite_medium.lifeformTech11212,
+.lifeformsprite.sprite_medium.lifeformTech11213,
+.lifeformsprite.sprite_medium.lifeformTech11214,
+.lifeformsprite.sprite_medium.lifeformTech11215,
+.lifeformsprite.sprite_medium.lifeformTech11216,
+.lifeformsprite.sprite_medium.lifeformTech11217,
+.lifeformsprite.sprite_medium.lifeformTech11218
+{
+    background-position-y: -940px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech12201,
+.lifeformsprite.sprite_medium.lifeformTech12202,
+.lifeformsprite.sprite_medium.lifeformTech12203,
+.lifeformsprite.sprite_medium.lifeformTech12204,
+.lifeformsprite.sprite_medium.lifeformTech12205,
+.lifeformsprite.sprite_medium.lifeformTech12206,
+.lifeformsprite.sprite_medium.lifeformTech12207,
+.lifeformsprite.sprite_medium.lifeformTech12208,
+.lifeformsprite.sprite_medium.lifeformTech12209,
+.lifeformsprite.sprite_medium.lifeformTech12210,
+.lifeformsprite.sprite_medium.lifeformTech12211,
+.lifeformsprite.sprite_medium.lifeformTech12212,
+.lifeformsprite.sprite_medium.lifeformTech12213,
+.lifeformsprite.sprite_medium.lifeformTech12214,
+.lifeformsprite.sprite_medium.lifeformTech12215,
+.lifeformsprite.sprite_medium.lifeformTech12216,
+.lifeformsprite.sprite_medium.lifeformTech12217,
+.lifeformsprite.sprite_medium.lifeformTech12218
+{
+    background-position-y: -2420px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech13201,
+.lifeformsprite.sprite_medium.lifeformTech13202,
+.lifeformsprite.sprite_medium.lifeformTech13203,
+.lifeformsprite.sprite_medium.lifeformTech13204,
+.lifeformsprite.sprite_medium.lifeformTech13205,
+.lifeformsprite.sprite_medium.lifeformTech13206,
+.lifeformsprite.sprite_medium.lifeformTech13207,
+.lifeformsprite.sprite_medium.lifeformTech13208,
+.lifeformsprite.sprite_medium.lifeformTech13209,
+.lifeformsprite.sprite_medium.lifeformTech13210,
+.lifeformsprite.sprite_medium.lifeformTech13211,
+.lifeformsprite.sprite_medium.lifeformTech13212,
+.lifeformsprite.sprite_medium.lifeformTech13213,
+.lifeformsprite.sprite_medium.lifeformTech13214,
+.lifeformsprite.sprite_medium.lifeformTech13215,
+.lifeformsprite.sprite_medium.lifeformTech13216,
+.lifeformsprite.sprite_medium.lifeformTech13217,
+.lifeformsprite.sprite_medium.lifeformTech13218
+{
+    background-position-y: -3900px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech14201,
+.lifeformsprite.sprite_medium.lifeformTech14202,
+.lifeformsprite.sprite_medium.lifeformTech14203,
+.lifeformsprite.sprite_medium.lifeformTech14204,
+.lifeformsprite.sprite_medium.lifeformTech14205,
+.lifeformsprite.sprite_medium.lifeformTech14206,
+.lifeformsprite.sprite_medium.lifeformTech14207,
+.lifeformsprite.sprite_medium.lifeformTech14208,
+.lifeformsprite.sprite_medium.lifeformTech14209,
+.lifeformsprite.sprite_medium.lifeformTech14210,
+.lifeformsprite.sprite_medium.lifeformTech14211,
+.lifeformsprite.sprite_medium.lifeformTech14212,
+.lifeformsprite.sprite_medium.lifeformTech14213,
+.lifeformsprite.sprite_medium.lifeformTech14214,
+.lifeformsprite.sprite_medium.lifeformTech14215,
+.lifeformsprite.sprite_medium.lifeformTech14216,
+.lifeformsprite.sprite_medium.lifeformTech14217,
+.lifeformsprite.sprite_medium.lifeformTech14218
+{
+    background-position-y: -5380px;
+}
+
+.lifeformsprite.sprite_medium.lifeformTech11201,
+.lifeformsprite.sprite_medium.lifeformTech12201,
+.lifeformsprite.sprite_medium.lifeformTech13201,
+.lifeformsprite.sprite_medium.lifeformTech14201 {
+    background-position-x: 0;
+}
+.lifeformsprite.sprite_medium.lifeformTech11202,
+.lifeformsprite.sprite_medium.lifeformTech12202,
+.lifeformsprite.sprite_medium.lifeformTech13202,
+.lifeformsprite.sprite_medium.lifeformTech14202 {
+    background-position-x: -100px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11203,
+.lifeformsprite.sprite_medium.lifeformTech12203,
+.lifeformsprite.sprite_medium.lifeformTech13203,
+.lifeformsprite.sprite_medium.lifeformTech14203 {
+    background-position-x: -200px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11204,
+.lifeformsprite.sprite_medium.lifeformTech12204,
+.lifeformsprite.sprite_medium.lifeformTech13204,
+.lifeformsprite.sprite_medium.lifeformTech14204 {
+    background-position-x: -300px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11205,
+.lifeformsprite.sprite_medium.lifeformTech12205,
+.lifeformsprite.sprite_medium.lifeformTech13205,
+.lifeformsprite.sprite_medium.lifeformTech14205 {
+    background-position-x: -400px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11206,
+.lifeformsprite.sprite_medium.lifeformTech12206,
+.lifeformsprite.sprite_medium.lifeformTech13206,
+.lifeformsprite.sprite_medium.lifeformTech14206 {
+    background-position-x: -500px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11207,
+.lifeformsprite.sprite_medium.lifeformTech12207,
+.lifeformsprite.sprite_medium.lifeformTech13207,
+.lifeformsprite.sprite_medium.lifeformTech14207 {
+    background-position-x: -600px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11208,
+.lifeformsprite.sprite_medium.lifeformTech12208,
+.lifeformsprite.sprite_medium.lifeformTech13208,
+.lifeformsprite.sprite_medium.lifeformTech14208 {
+    background-position-x: -700px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11209,
+.lifeformsprite.sprite_medium.lifeformTech12209,
+.lifeformsprite.sprite_medium.lifeformTech13209,
+.lifeformsprite.sprite_medium.lifeformTech14209 {
+    background-position-x: -800px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11210,
+.lifeformsprite.sprite_medium.lifeformTech12210,
+.lifeformsprite.sprite_medium.lifeformTech13210,
+.lifeformsprite.sprite_medium.lifeformTech14210 {
+    background-position-x: -900px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11211,
+.lifeformsprite.sprite_medium.lifeformTech12211,
+.lifeformsprite.sprite_medium.lifeformTech13211,
+.lifeformsprite.sprite_medium.lifeformTech14211 {
+    background-position-x: -1000px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11212,
+.lifeformsprite.sprite_medium.lifeformTech12212,
+.lifeformsprite.sprite_medium.lifeformTech13212,
+.lifeformsprite.sprite_medium.lifeformTech14212 {
+    background-position-x: -1100px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11213,
+.lifeformsprite.sprite_medium.lifeformTech12213,
+.lifeformsprite.sprite_medium.lifeformTech13213,
+.lifeformsprite.sprite_medium.lifeformTech14213 {
+    background-position-x: -1200px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11214,
+.lifeformsprite.sprite_medium.lifeformTech12214,
+.lifeformsprite.sprite_medium.lifeformTech13214,
+.lifeformsprite.sprite_medium.lifeformTech14214 {
+    background-position-x: -1300px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11215,
+.lifeformsprite.sprite_medium.lifeformTech12215,
+.lifeformsprite.sprite_medium.lifeformTech13215,
+.lifeformsprite.sprite_medium.lifeformTech14215 {
+    background-position-x: -1400px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11216,
+.lifeformsprite.sprite_medium.lifeformTech12216,
+.lifeformsprite.sprite_medium.lifeformTech13216,
+.lifeformsprite.sprite_medium.lifeformTech14216 {
+    background-position-x: -1500px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11217,
+.lifeformsprite.sprite_medium.lifeformTech12217,
+.lifeformsprite.sprite_medium.lifeformTech13217,
+.lifeformsprite.sprite_medium.lifeformTech14217 {
+    background-position-x: -1600px;
+}
+.lifeformsprite.sprite_medium.lifeformTech11218,
+.lifeformsprite.sprite_medium.lifeformTech12218,
+.lifeformsprite.sprite_medium.lifeformTech13218,
+.lifeformsprite.sprite_medium.lifeformTech14218 {
+    background-position-x: -1700px;
+}
+/* Small */
+/* Medium */
+.lifeformsprite.sprite_small.lifeformTech11201,
+.lifeformsprite.sprite_small.lifeformTech11202,
+.lifeformsprite.sprite_small.lifeformTech11203,
+.lifeformsprite.sprite_small.lifeformTech11204,
+.lifeformsprite.sprite_small.lifeformTech11205,
+.lifeformsprite.sprite_small.lifeformTech11206,
+.lifeformsprite.sprite_small.lifeformTech11207,
+.lifeformsprite.sprite_small.lifeformTech11208,
+.lifeformsprite.sprite_small.lifeformTech11209,
+.lifeformsprite.sprite_small.lifeformTech11210,
+.lifeformsprite.sprite_small.lifeformTech11211,
+.lifeformsprite.sprite_small.lifeformTech11212,
+.lifeformsprite.sprite_small.lifeformTech11213,
+.lifeformsprite.sprite_small.lifeformTech11214,
+.lifeformsprite.sprite_small.lifeformTech11215,
+.lifeformsprite.sprite_small.lifeformTech11216,
+.lifeformsprite.sprite_small.lifeformTech11217,
+.lifeformsprite.sprite_small.lifeformTech11218
+{
+    background-position-y: -1240px;
+}
+.lifeformsprite.sprite_small.lifeformTech12201,
+.lifeformsprite.sprite_small.lifeformTech12202,
+.lifeformsprite.sprite_small.lifeformTech12203,
+.lifeformsprite.sprite_small.lifeformTech12204,
+.lifeformsprite.sprite_small.lifeformTech12205,
+.lifeformsprite.sprite_small.lifeformTech12206,
+.lifeformsprite.sprite_small.lifeformTech12207,
+.lifeformsprite.sprite_small.lifeformTech12208,
+.lifeformsprite.sprite_small.lifeformTech12209,
+.lifeformsprite.sprite_small.lifeformTech12210,
+.lifeformsprite.sprite_small.lifeformTech12211,
+.lifeformsprite.sprite_small.lifeformTech12212,
+.lifeformsprite.sprite_small.lifeformTech12213,
+.lifeformsprite.sprite_small.lifeformTech12214,
+.lifeformsprite.sprite_small.lifeformTech12215,
+.lifeformsprite.sprite_small.lifeformTech12216,
+.lifeformsprite.sprite_small.lifeformTech12217,
+.lifeformsprite.sprite_small.lifeformTech12218
+{
+    background-position-y: -2720px;
+}
+.lifeformsprite.sprite_small.lifeformTech13201,
+.lifeformsprite.sprite_small.lifeformTech13202,
+.lifeformsprite.sprite_small.lifeformTech13203,
+.lifeformsprite.sprite_small.lifeformTech13204,
+.lifeformsprite.sprite_small.lifeformTech13205,
+.lifeformsprite.sprite_small.lifeformTech13206,
+.lifeformsprite.sprite_small.lifeformTech13207,
+.lifeformsprite.sprite_small.lifeformTech13208,
+.lifeformsprite.sprite_small.lifeformTech13209,
+.lifeformsprite.sprite_small.lifeformTech13210,
+.lifeformsprite.sprite_small.lifeformTech13211,
+.lifeformsprite.sprite_small.lifeformTech13212,
+.lifeformsprite.sprite_small.lifeformTech13213,
+.lifeformsprite.sprite_small.lifeformTech13214,
+.lifeformsprite.sprite_small.lifeformTech13215,
+.lifeformsprite.sprite_small.lifeformTech13216,
+.lifeformsprite.sprite_small.lifeformTech13217,
+.lifeformsprite.sprite_small.lifeformTech13218
+{
+    background-position-y: -4200px;
+}
+.lifeformsprite.sprite_small.lifeformTech14201,
+.lifeformsprite.sprite_small.lifeformTech14202,
+.lifeformsprite.sprite_small.lifeformTech14203,
+.lifeformsprite.sprite_small.lifeformTech14204,
+.lifeformsprite.sprite_small.lifeformTech14205,
+.lifeformsprite.sprite_small.lifeformTech14206,
+.lifeformsprite.sprite_small.lifeformTech14207,
+.lifeformsprite.sprite_small.lifeformTech14208,
+.lifeformsprite.sprite_small.lifeformTech14209,
+.lifeformsprite.sprite_small.lifeformTech14210,
+.lifeformsprite.sprite_small.lifeformTech14211,
+.lifeformsprite.sprite_small.lifeformTech14212,
+.lifeformsprite.sprite_small.lifeformTech14213,
+.lifeformsprite.sprite_small.lifeformTech14214,
+.lifeformsprite.sprite_small.lifeformTech14215,
+.lifeformsprite.sprite_small.lifeformTech14216,
+.lifeformsprite.sprite_small.lifeformTech14217,
+.lifeformsprite.sprite_small.lifeformTech14218
+{
+    background-position-y: -5680px;
+}
+.lifeformsprite.sprite_small.lifeformTech11201,
+.lifeformsprite.sprite_small.lifeformTech12201,
+.lifeformsprite.sprite_small.lifeformTech13201,
+.lifeformsprite.sprite_small.lifeformTech14201 {
+    background-position-x: 0;
+}
+.lifeformsprite.sprite_small.lifeformTech11202,
+.lifeformsprite.sprite_small.lifeformTech12202,
+.lifeformsprite.sprite_small.lifeformTech13202,
+.lifeformsprite.sprite_small.lifeformTech14202 {
+    background-position-x: -80px;
+}
+.lifeformsprite.sprite_small.lifeformTech11203,
+.lifeformsprite.sprite_small.lifeformTech12203,
+.lifeformsprite.sprite_small.lifeformTech13203,
+.lifeformsprite.sprite_small.lifeformTech14203 {
+    background-position-x: -160px;
+}
+.lifeformsprite.sprite_small.lifeformTech11204,
+.lifeformsprite.sprite_small.lifeformTech12204,
+.lifeformsprite.sprite_small.lifeformTech13204,
+.lifeformsprite.sprite_small.lifeformTech14204 {
+    background-position-x: -240px;
+}
+.lifeformsprite.sprite_small.lifeformTech11205,
+.lifeformsprite.sprite_small.lifeformTech12205,
+.lifeformsprite.sprite_small.lifeformTech13205,
+.lifeformsprite.sprite_small.lifeformTech14205 {
+    background-position-x: -320px;
+}
+.lifeformsprite.sprite_small.lifeformTech11206,
+.lifeformsprite.sprite_small.lifeformTech12206,
+.lifeformsprite.sprite_small.lifeformTech13206,
+.lifeformsprite.sprite_small.lifeformTech14206 {
+    background-position-x: -400px;
+}
+.lifeformsprite.sprite_small.lifeformTech11207,
+.lifeformsprite.sprite_small.lifeformTech12207,
+.lifeformsprite.sprite_small.lifeformTech13207,
+.lifeformsprite.sprite_small.lifeformTech14207 {
+    background-position-x: -480px;
+}
+.lifeformsprite.sprite_small.lifeformTech11208,
+.lifeformsprite.sprite_small.lifeformTech12208,
+.lifeformsprite.sprite_small.lifeformTech13208,
+.lifeformsprite.sprite_small.lifeformTech14208 {
+    background-position-x: -560px;
+}
+.lifeformsprite.sprite_small.lifeformTech11209,
+.lifeformsprite.sprite_small.lifeformTech12209,
+.lifeformsprite.sprite_small.lifeformTech13209,
+.lifeformsprite.sprite_small.lifeformTech14209 {
+    background-position-x: -640px;
+}
+.lifeformsprite.sprite_small.lifeformTech11210,
+.lifeformsprite.sprite_small.lifeformTech12210,
+.lifeformsprite.sprite_small.lifeformTech13210,
+.lifeformsprite.sprite_small.lifeformTech14210 {
+    background-position-x: -720px;
+}
+.lifeformsprite.sprite_small.lifeformTech11211,
+.lifeformsprite.sprite_small.lifeformTech12211,
+.lifeformsprite.sprite_small.lifeformTech13211,
+.lifeformsprite.sprite_small.lifeformTech14211 {
+    background-position-x: -800px;
+}
+.lifeformsprite.sprite_small.lifeformTech11212,
+.lifeformsprite.sprite_small.lifeformTech12212,
+.lifeformsprite.sprite_small.lifeformTech13212,
+.lifeformsprite.sprite_small.lifeformTech14212 {
+    background-position-x: -880px;
+}
+.lifeformsprite.sprite_small.lifeformTech11213,
+.lifeformsprite.sprite_small.lifeformTech12213,
+.lifeformsprite.sprite_small.lifeformTech13213,
+.lifeformsprite.sprite_small.lifeformTech14213 {
+    background-position-x: -960px;
+}
+.lifeformsprite.sprite_small.lifeformTech11214,
+.lifeformsprite.sprite_small.lifeformTech12214,
+.lifeformsprite.sprite_small.lifeformTech13214,
+.lifeformsprite.sprite_small.lifeformTech14214 {
+    background-position-x: -1040px;
+}
+.lifeformsprite.sprite_small.lifeformTech11215,
+.lifeformsprite.sprite_small.lifeformTech12215,
+.lifeformsprite.sprite_small.lifeformTech13215,
+.lifeformsprite.sprite_small.lifeformTech14215 {
+    background-position-x: -1120px;
+}
+.lifeformsprite.sprite_small.lifeformTech11216,
+.lifeformsprite.sprite_small.lifeformTech12216,
+.lifeformsprite.sprite_small.lifeformTech13216,
+.lifeformsprite.sprite_small.lifeformTech14216 {
+    background-position-x: -1200px;
+}
+.lifeformsprite.sprite_small.lifeformTech11217,
+.lifeformsprite.sprite_small.lifeformTech12217,
+.lifeformsprite.sprite_small.lifeformTech13217,
+.lifeformsprite.sprite_small.lifeformTech14217 {
+    background-position-x: -1280px;
+}
+.lifeformsprite.sprite_small.lifeformTech11218,
+.lifeformsprite.sprite_small.lifeformTech12218,
+.lifeformsprite.sprite_small.lifeformTech13218,
+.lifeformsprite.sprite_small.lifeformTech14218 {
+    background-position-x: -1360px;
+}
+/* queue */
+.queuePic.lifeformqueue.lifeformTech11201,
+.queuePic.lifeformqueue.lifeformTech11202,
+.queuePic.lifeformqueue.lifeformTech11203,
+.queuePic.lifeformqueue.lifeformTech11204,
+.queuePic.lifeformqueue.lifeformTech11205,
+.queuePic.lifeformqueue.lifeformTech11206,
+.queuePic.lifeformqueue.lifeformTech11207,
+.queuePic.lifeformqueue.lifeformTech11208,
+.queuePic.lifeformqueue.lifeformTech11209,
+.queuePic.lifeformqueue.lifeformTech11210,
+.queuePic.lifeformqueue.lifeformTech11211,
+.queuePic.lifeformqueue.lifeformTech11212,
+.queuePic.lifeformqueue.lifeformTech11213,
+.queuePic.lifeformqueue.lifeformTech11214,
+.queuePic.lifeformqueue.lifeformTech11215,
+.queuePic.lifeformqueue.lifeformTech11216,
+.queuePic.lifeformqueue.lifeformTech11217,
+.queuePic.lifeformqueue.lifeformTech11218
+{
+    background-position-y: -148px;
+}
+.queuePic.lifeformqueue.lifeformTech12201,
+.queuePic.lifeformqueue.lifeformTech12202,
+.queuePic.lifeformqueue.lifeformTech12203,
+.queuePic.lifeformqueue.lifeformTech12204,
+.queuePic.lifeformqueue.lifeformTech12205,
+.queuePic.lifeformqueue.lifeformTech12206,
+.queuePic.lifeformqueue.lifeformTech12207,
+.queuePic.lifeformqueue.lifeformTech12208,
+.queuePic.lifeformqueue.lifeformTech12209,
+.queuePic.lifeformqueue.lifeformTech12210,
+.queuePic.lifeformqueue.lifeformTech12211,
+.queuePic.lifeformqueue.lifeformTech12212,
+.queuePic.lifeformqueue.lifeformTech12213,
+.queuePic.lifeformqueue.lifeformTech12214,
+.queuePic.lifeformqueue.lifeformTech12215,
+.queuePic.lifeformqueue.lifeformTech12216,
+.queuePic.lifeformqueue.lifeformTech12217,
+.queuePic.lifeformqueue.lifeformTech12218
+{
+    background-position-y: -444px;
+}
+.queuePic.lifeformqueue.lifeformTech13201,
+.queuePic.lifeformqueue.lifeformTech13202,
+.queuePic.lifeformqueue.lifeformTech13203,
+.queuePic.lifeformqueue.lifeformTech13204,
+.queuePic.lifeformqueue.lifeformTech13205,
+.queuePic.lifeformqueue.lifeformTech13206,
+.queuePic.lifeformqueue.lifeformTech13207,
+.queuePic.lifeformqueue.lifeformTech13208,
+.queuePic.lifeformqueue.lifeformTech13209,
+.queuePic.lifeformqueue.lifeformTech13210,
+.queuePic.lifeformqueue.lifeformTech13211,
+.queuePic.lifeformqueue.lifeformTech13212,
+.queuePic.lifeformqueue.lifeformTech13213,
+.queuePic.lifeformqueue.lifeformTech13214,
+.queuePic.lifeformqueue.lifeformTech13215,
+.queuePic.lifeformqueue.lifeformTech13216,
+.queuePic.lifeformqueue.lifeformTech13217,
+.queuePic.lifeformqueue.lifeformTech13218
+{
+    background-position-y: -740px;
+}
+.queuePic.lifeformqueue.lifeformTech14201,
+.queuePic.lifeformqueue.lifeformTech14202,
+.queuePic.lifeformqueue.lifeformTech14203,
+.queuePic.lifeformqueue.lifeformTech14204,
+.queuePic.lifeformqueue.lifeformTech14205,
+.queuePic.lifeformqueue.lifeformTech14206,
+.queuePic.lifeformqueue.lifeformTech14207,
+.queuePic.lifeformqueue.lifeformTech14208,
+.queuePic.lifeformqueue.lifeformTech14209,
+.queuePic.lifeformqueue.lifeformTech14210,
+.queuePic.lifeformqueue.lifeformTech14211,
+.queuePic.lifeformqueue.lifeformTech14212,
+.queuePic.lifeformqueue.lifeformTech14213,
+.queuePic.lifeformqueue.lifeformTech14214,
+.queuePic.lifeformqueue.lifeformTech14215,
+.queuePic.lifeformqueue.lifeformTech14216,
+.queuePic.lifeformqueue.lifeformTech14217,
+.queuePic.lifeformqueue.lifeformTech14218
+{
+    background-position-y: -1036px;
+}
+.queuePic.lifeformqueue.lifeformTech11201,
+.queuePic.lifeformqueue.lifeformTech12201,
+.queuePic.lifeformqueue.lifeformTech13201,
+.queuePic.lifeformqueue.lifeformTech14201 {
+    background-position-x: 0;
+}
+.queuePic.lifeformqueue.lifeformTech11202,
+.queuePic.lifeformqueue.lifeformTech12202,
+.queuePic.lifeformqueue.lifeformTech13202,
+.queuePic.lifeformqueue.lifeformTech14202 {
+    background-position-x: -40px;
+}
+.queuePic.lifeformqueue.lifeformTech11203,
+.queuePic.lifeformqueue.lifeformTech12203,
+.queuePic.lifeformqueue.lifeformTech13203,
+.queuePic.lifeformqueue.lifeformTech14203 {
+    background-position-x: -80px;
+}
+.queuePic.lifeformqueue.lifeformTech11204,
+.queuePic.lifeformqueue.lifeformTech12204,
+.queuePic.lifeformqueue.lifeformTech13204,
+.queuePic.lifeformqueue.lifeformTech14204 {
+    background-position-x: -120px;
+}
+.queuePic.lifeformqueue.lifeformTech11205,
+.queuePic.lifeformqueue.lifeformTech12205,
+.queuePic.lifeformqueue.lifeformTech13205,
+.queuePic.lifeformqueue.lifeformTech14205 {
+    background-position-x: -160px;
+}
+.queuePic.lifeformqueue.lifeformTech11206,
+.queuePic.lifeformqueue.lifeformTech12206,
+.queuePic.lifeformqueue.lifeformTech13206,
+.queuePic.lifeformqueue.lifeformTech14206 {
+    background-position-x: -200px;
+}
+.queuePic.lifeformqueue.lifeformTech11207,
+.queuePic.lifeformqueue.lifeformTech12207,
+.queuePic.lifeformqueue.lifeformTech13207,
+.queuePic.lifeformqueue.lifeformTech14207 {
+    background-position-x: -240px;
+}
+.queuePic.lifeformqueue.lifeformTech11208,
+.queuePic.lifeformqueue.lifeformTech12208,
+.queuePic.lifeformqueue.lifeformTech13208,
+.queuePic.lifeformqueue.lifeformTech14208 {
+    background-position-x: -280px;
+}
+.queuePic.lifeformqueue.lifeformTech11209,
+.queuePic.lifeformqueue.lifeformTech12209,
+.queuePic.lifeformqueue.lifeformTech13209,
+.queuePic.lifeformqueue.lifeformTech14209 {
+    background-position-x: -320px;
+}
+.queuePic.lifeformqueue.lifeformTech11210,
+.queuePic.lifeformqueue.lifeformTech12210,
+.queuePic.lifeformqueue.lifeformTech13210,
+.queuePic.lifeformqueue.lifeformTech14210 {
+    background-position-x: -360px;
+}
+.queuePic.lifeformqueue.lifeformTech11211,
+.queuePic.lifeformqueue.lifeformTech12211,
+.queuePic.lifeformqueue.lifeformTech13211,
+.queuePic.lifeformqueue.lifeformTech14211 {
+    background-position-x: -400px;
+}
+.queuePic.lifeformqueue.lifeformTech11212,
+.queuePic.lifeformqueue.lifeformTech12212,
+.queuePic.lifeformqueue.lifeformTech13212,
+.queuePic.lifeformqueue.lifeformTech14212 {
+    background-position-x: -440px;
+}
+.queuePic.lifeformqueue.lifeformTech11213,
+.queuePic.lifeformqueue.lifeformTech12213,
+.queuePic.lifeformqueue.lifeformTech13213,
+.queuePic.lifeformqueue.lifeformTech14213 {
+    background-position-x: -480px;
+}
+.queuePic.lifeformqueue.lifeformTech11214,
+.queuePic.lifeformqueue.lifeformTech12214,
+.queuePic.lifeformqueue.lifeformTech13214,
+.queuePic.lifeformqueue.lifeformTech14214 {
+    background-position-x: -520px;
+}
+.queuePic.lifeformqueue.lifeformTech11215,
+.queuePic.lifeformqueue.lifeformTech12215,
+.queuePic.lifeformqueue.lifeformTech13215,
+.queuePic.lifeformqueue.lifeformTech14215 {
+    background-position-x: -560px;
+}
+.queuePic.lifeformqueue.lifeformTech11216,
+.queuePic.lifeformqueue.lifeformTech12216,
+.queuePic.lifeformqueue.lifeformTech13216,
+.queuePic.lifeformqueue.lifeformTech14216 {
+    background-position-x: -600px;
+}
+.queuePic.lifeformqueue.lifeformTech11217,
+.queuePic.lifeformqueue.lifeformTech12217,
+.queuePic.lifeformqueue.lifeformTech13217,
+.queuePic.lifeformqueue.lifeformTech14217 {
+    background-position-x: -640px;
+}
+.queuePic.lifeformqueue.lifeformTech11218,
+.queuePic.lifeformqueue.lifeformTech12218,
+.queuePic.lifeformqueue.lifeformTech13218,
+.queuePic.lifeformqueue.lifeformTech14218 {
+    background-position-x: -680px;
+}
+/* tiny */
+.queuePic.lifeformqueuetiny.lifeformTech11201,
+.queuePic.lifeformqueuetiny.lifeformTech11202,
+.queuePic.lifeformqueuetiny.lifeformTech11203,
+.queuePic.lifeformqueuetiny.lifeformTech11204,
+.queuePic.lifeformqueuetiny.lifeformTech11205,
+.queuePic.lifeformqueuetiny.lifeformTech11206,
+.queuePic.lifeformqueuetiny.lifeformTech11207,
+.queuePic.lifeformqueuetiny.lifeformTech11208,
+.queuePic.lifeformqueuetiny.lifeformTech11209,
+.queuePic.lifeformqueuetiny.lifeformTech11210,
+.queuePic.lifeformqueuetiny.lifeformTech11211,
+.queuePic.lifeformqueuetiny.lifeformTech11212,
+.queuePic.lifeformqueuetiny.lifeformTech11213,
+.queuePic.lifeformqueuetiny.lifeformTech11214,
+.queuePic.lifeformqueuetiny.lifeformTech11215,
+.queuePic.lifeformqueuetiny.lifeformTech11216,
+.queuePic.lifeformqueuetiny.lifeformTech11217,
+.queuePic.lifeformqueuetiny.lifeformTech11218
+{
+    background-position-y: -104px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech12201,
+.queuePic.lifeformqueuetiny.lifeformTech12202,
+.queuePic.lifeformqueuetiny.lifeformTech12203,
+.queuePic.lifeformqueuetiny.lifeformTech12204,
+.queuePic.lifeformqueuetiny.lifeformTech12205,
+.queuePic.lifeformqueuetiny.lifeformTech12206,
+.queuePic.lifeformqueuetiny.lifeformTech12207,
+.queuePic.lifeformqueuetiny.lifeformTech12208,
+.queuePic.lifeformqueuetiny.lifeformTech12209,
+.queuePic.lifeformqueuetiny.lifeformTech12210,
+.queuePic.lifeformqueuetiny.lifeformTech12211,
+.queuePic.lifeformqueuetiny.lifeformTech12212,
+.queuePic.lifeformqueuetiny.lifeformTech12213,
+.queuePic.lifeformqueuetiny.lifeformTech12214,
+.queuePic.lifeformqueuetiny.lifeformTech12215,
+.queuePic.lifeformqueuetiny.lifeformTech12216,
+.queuePic.lifeformqueuetiny.lifeformTech12217,
+.queuePic.lifeformqueuetiny.lifeformTech12218
+{
+    background-position-y: -311px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech13201,
+.queuePic.lifeformqueuetiny.lifeformTech13202,
+.queuePic.lifeformqueuetiny.lifeformTech13203,
+.queuePic.lifeformqueuetiny.lifeformTech13204,
+.queuePic.lifeformqueuetiny.lifeformTech13205,
+.queuePic.lifeformqueuetiny.lifeformTech13206,
+.queuePic.lifeformqueuetiny.lifeformTech13207,
+.queuePic.lifeformqueuetiny.lifeformTech13208,
+.queuePic.lifeformqueuetiny.lifeformTech13209,
+.queuePic.lifeformqueuetiny.lifeformTech13210,
+.queuePic.lifeformqueuetiny.lifeformTech13211,
+.queuePic.lifeformqueuetiny.lifeformTech13212,
+.queuePic.lifeformqueuetiny.lifeformTech13213,
+.queuePic.lifeformqueuetiny.lifeformTech13214,
+.queuePic.lifeformqueuetiny.lifeformTech13215,
+.queuePic.lifeformqueuetiny.lifeformTech13216,
+.queuePic.lifeformqueuetiny.lifeformTech13217,
+.queuePic.lifeformqueuetiny.lifeformTech13218
+{
+    background-position-y: -518px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech14201,
+.queuePic.lifeformqueuetiny.lifeformTech14202,
+.queuePic.lifeformqueuetiny.lifeformTech14203,
+.queuePic.lifeformqueuetiny.lifeformTech14204,
+.queuePic.lifeformqueuetiny.lifeformTech14205,
+.queuePic.lifeformqueuetiny.lifeformTech14206,
+.queuePic.lifeformqueuetiny.lifeformTech14207,
+.queuePic.lifeformqueuetiny.lifeformTech14208,
+.queuePic.lifeformqueuetiny.lifeformTech14209,
+.queuePic.lifeformqueuetiny.lifeformTech14210,
+.queuePic.lifeformqueuetiny.lifeformTech14211,
+.queuePic.lifeformqueuetiny.lifeformTech14212,
+.queuePic.lifeformqueuetiny.lifeformTech14213,
+.queuePic.lifeformqueuetiny.lifeformTech14214,
+.queuePic.lifeformqueuetiny.lifeformTech14215,
+.queuePic.lifeformqueuetiny.lifeformTech14216,
+.queuePic.lifeformqueuetiny.lifeformTech14217,
+.queuePic.lifeformqueuetiny.lifeformTech14218
+{
+    background-position-y: -725px;
+}
+
+.queuePic.lifeformqueuetiny.lifeformTech11201,
+.queuePic.lifeformqueuetiny.lifeformTech12201,
+.queuePic.lifeformqueuetiny.lifeformTech13201,
+.queuePic.lifeformqueuetiny.lifeformTech14201 {
+    background-position-x: 0;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11202,
+.queuePic.lifeformqueuetiny.lifeformTech12202,
+.queuePic.lifeformqueuetiny.lifeformTech13202,
+.queuePic.lifeformqueuetiny.lifeformTech14202 {
+    background-position-x: -28px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11203,
+.queuePic.lifeformqueuetiny.lifeformTech12203,
+.queuePic.lifeformqueuetiny.lifeformTech13203,
+.queuePic.lifeformqueuetiny.lifeformTech14203 {
+    background-position-x: -56px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11204,
+.queuePic.lifeformqueuetiny.lifeformTech12204,
+.queuePic.lifeformqueuetiny.lifeformTech13204,
+.queuePic.lifeformqueuetiny.lifeformTech14204 {
+    background-position-x: -84px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11205,
+.queuePic.lifeformqueuetiny.lifeformTech12205,
+.queuePic.lifeformqueuetiny.lifeformTech13205,
+.queuePic.lifeformqueuetiny.lifeformTech14205 {
+    background-position-x: -112px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11206,
+.queuePic.lifeformqueuetiny.lifeformTech12206,
+.queuePic.lifeformqueuetiny.lifeformTech13206,
+.queuePic.lifeformqueuetiny.lifeformTech14206 {
+    background-position-x: -140px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11207,
+.queuePic.lifeformqueuetiny.lifeformTech12207,
+.queuePic.lifeformqueuetiny.lifeformTech13207,
+.queuePic.lifeformqueuetiny.lifeformTech14207 {
+    background-position-x: -168px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11208,
+.queuePic.lifeformqueuetiny.lifeformTech12208,
+.queuePic.lifeformqueuetiny.lifeformTech13208,
+.queuePic.lifeformqueuetiny.lifeformTech14208 {
+    background-position-x: -196px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11209,
+.queuePic.lifeformqueuetiny.lifeformTech12209,
+.queuePic.lifeformqueuetiny.lifeformTech13209,
+.queuePic.lifeformqueuetiny.lifeformTech14209 {
+    background-position-x: -224px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11210,
+.queuePic.lifeformqueuetiny.lifeformTech12210,
+.queuePic.lifeformqueuetiny.lifeformTech13210,
+.queuePic.lifeformqueuetiny.lifeformTech14210 {
+    background-position-x: -252px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11211,
+.queuePic.lifeformqueuetiny.lifeformTech12211,
+.queuePic.lifeformqueuetiny.lifeformTech13211,
+.queuePic.lifeformqueuetiny.lifeformTech14211 {
+    background-position-x: -280px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11212,
+.queuePic.lifeformqueuetiny.lifeformTech12212,
+.queuePic.lifeformqueuetiny.lifeformTech13212,
+.queuePic.lifeformqueuetiny.lifeformTech14212 {
+    background-position-x: -308px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11213,
+.queuePic.lifeformqueuetiny.lifeformTech12213,
+.queuePic.lifeformqueuetiny.lifeformTech13213,
+.queuePic.lifeformqueuetiny.lifeformTech14213 {
+    background-position-x: -336px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11214,
+.queuePic.lifeformqueuetiny.lifeformTech12214,
+.queuePic.lifeformqueuetiny.lifeformTech13214,
+.queuePic.lifeformqueuetiny.lifeformTech14214 {
+    background-position-x: -364px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11215,
+.queuePic.lifeformqueuetiny.lifeformTech12215,
+.queuePic.lifeformqueuetiny.lifeformTech13215,
+.queuePic.lifeformqueuetiny.lifeformTech14215 {
+    background-position-x: -392px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11216,
+.queuePic.lifeformqueuetiny.lifeformTech12216,
+.queuePic.lifeformqueuetiny.lifeformTech13216,
+.queuePic.lifeformqueuetiny.lifeformTech14216 {
+    background-position-x: -420px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11217,
+.queuePic.lifeformqueuetiny.lifeformTech12217,
+.queuePic.lifeformqueuetiny.lifeformTech13217,
+.queuePic.lifeformqueuetiny.lifeformTech14217 {
+    background-position-x: -448px;
+}
+.queuePic.lifeformqueuetiny.lifeformTech11218,
+.queuePic.lifeformqueuetiny.lifeformTech12218,
+.queuePic.lifeformqueuetiny.lifeformTech13218,
+.queuePic.lifeformqueuetiny.lifeformTech14218 {
+    background-position-x: -476px;
+}

@@ -1,0 +1,148 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+	<title>OGame Bot</title>
+   
+      <!-- SHA: e35e1ad0682ee0177903d6d99247276ee4f13f14 -->
+          <link href="/public/img/favicon.ico" rel="icon" type="image/x-icon" />
+          <link rel="stylesheet" type="text/css" href="/public/css/dark/bootstrap.css" />
+
+          <link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css" />
+          <link rel="stylesheet" type="text/css" href="/public/css/style.css" />
+          <script src="/public/js/mousetrap.min.js"></script>
+          <script src="/public/js/jquery-3.2.1.min.js"></script>
+          <script src="/public/js/popper.min.js"></script>
+          <script src="/public/js/bootstrap.min.js"></script>
+          <script src="/public/js/lodash.min.js"></script>
+          <script src="https://unpkg.com/accounting-js"></script>
+          <script src="https://unpkg.com/vue-numeric"></script>
+          <script>
+              
+              
+                  Mousetrap.bind('T', function() { document.location.href = "/themes/quick-switch"; });
+                  
+                      Mousetrap.bind('D', function() { document.location.href = "/_debug"; });
+                  
+              
+                        </script>
+
+          
+           
+
+
+      <style>
+          .input-sm {
+              height: 23px;
+              width: 70px;
+              font-size: 12px;
+              padding: 0 5px;
+          }
+          .max {
+              font-size: 12px;
+              margin-top: 4px;
+          }
+
+          .attack_mission                                { background-color: rgba(255,    0,     0, 0.30); }
+          .attack_mission:hover                          { background-color: rgba(255,    0,     0, 0.15); }
+          .park_mission                                  { background-color: rgba(68,   243,   180, 0.30); }
+          .park_mission:hover                            { background-color: rgba(68,   243,   180, 0.15); }
+          .transport_mission                             { background-color: rgba(171,  225,    94, 0.30); }
+          .transport_mission:hover                       { background-color: rgba(171,  225,    94, 0.15); }
+          .spy_mission                                   { background-color: rgba(224,  191,    66, 0.30); }
+          .spy_mission:hover                             { background-color: rgba(224,  191,    66, 0.15); }
+          .expedition_mission                            { background-color: rgba(72,     0,   234, 0.30); }
+          .expedition_mission:hover                      { background-color: rgba(72,     0,   234, 0.15); }
+          .harvest_mission                               { background-color: rgba(147,   80,     0, 0.30); }
+          .harvest_mission:hover                         { background-color: rgba(147,   80,     0, 0.15); }
+          .colonize_mission                              { background-color: rgba(77,   124,   204, 0.30); }
+          .colonize_mission:hover                        { background-color: rgba(77,   124,   204, 0.15); }
+      </style>
+      <link rel="stylesheet" href="/public/css/ogame_imgs.css">
+      <link type="text/css" rel="stylesheet" href="/public/css/bootstrap-vue.css"/>
+      <!--<script src="/public/js/vue-2.5.16.min.js"></script>-->
+      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+      <script src="/public/js/bootstrap-vue.js"></script>
+      <script src="/public/js/bootbox.min.js" type="text/javascript"></script>
+      <script src="/public/js/vue-countdown.js"></script>
+      <script src="/public/js/moment.min.js"></script>
+      <script>Vue.component(VueCountdown.name, VueCountdown);</script>
+      <script>
+          let btnSendFlightClicked = function(id) {
+              bootbox.confirm({backdrop: true, size: "small", message: "Are you sure?", callback: function(result){if (result) {
+                      document.getElementById("send_flight_" + id).submit();}}});
+          };
+          let btnCancelFleetClicked = function(id) {
+              bootbox.confirm({backdrop: true, size: "small", message: "Are you sure?", callback: function(result){if (result) {
+                      document.getElementById("delete_fleet_" + id).submit();}}});
+          };
+      </script>
+
+
+  
+   <!--
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="/public/ogame_img.css">
+	
+	
+	<style type="text/css">
+	body {
+		padding-bottom: 70px;
+		background-color:#333333;
+		font-size: 11px;
+		color:ghostwhite;
+	}
+
+
+	a {color: grey;}
+  	a:hover {color: ghostwhite;}
+		
+	.content {
+		margin: 10px;
+	}
+
+	td, th {
+	vertical-align:top;
+	}
+
+	</style>
+   -->
+   
+   <style>
+      body {
+         padding-bottom: 70px;
+         background-color:#333333;
+         font-size: 11px;
+         color:ghostwhite;
+      }
+   	td, th {
+         vertical-align:top;
+      }
+      
+      .content {
+         margin: 10px;
+      }
+   </style>
+</head>
+
+<!--<body onload="onLoaded();">-->
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Go App</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		  <ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="/">Bot</a></li>
+			<li class="nav-item"><a class="nav-link" href="/bot/empire/0">Empire</a></li>
+         <li class="nav-item"><a class="nav-link" href="/bot/flights">SendFleets</a></li>
+			<li class="nav-item"><a class="nav-link" href="/game/index.php">Browser</a></li>
+		  </ul>
+		</div>
+	  </nav>
+	<!--<a href="/settings/saveData">SaveData</a>-->
+
+{{end}}

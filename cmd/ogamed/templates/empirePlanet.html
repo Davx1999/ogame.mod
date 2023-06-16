@@ -1,0 +1,481 @@
+{{ define "empirePlanet" }}
+
+{{template "header" .}}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://releases.jquery.com/git/jquery-git.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link href="/static/buildings.css">
+        <link href="/static/lifeforms.css">
+
+        
+        <link rel="stylesheet" type="text/css" href="/assets/css/resourcesbar.css"/>
+        <link rel="stylesheet" type="text/css" href="/assets/css/retrieveEmail.css"/>
+        <link rel="stylesheet" type="text/css" href="/assets/css/technologydetails.css"/>
+        <link rel="stylesheet" type="text/css" href="/assets/css/technologytree.css"/>
+        
+        <title>{{ .Bot.GetUniverseName }}-{{ .Bot.GetLanguage }} | {{ .Bot.Player.PlayerName }}</title>
+    </head>
+
+    <body>
+	<style>
+		.simg_MetalMine              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -0px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_CrystalMine            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -28px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_DeuteriumSynthesizer   { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -56px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_SolarPlant             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -84px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_FusionReactor          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -112px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_MetalStorage           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -224px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_CrystalStorage         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -0px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_DeuteriumTank          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -28px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_ShieldedMetalDen       { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -56px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_UndergroundCrystalDen  { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -84px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_SeabedDeuteriumDen     { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -112px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_AllianceDepot          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -196px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_LunarBase              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -224px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_SensorPhalanx          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -0px -5358px; display: block; width: 28px; height: 28px; }
+		.simg_JumpGate               { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -28px -5358px; display: block; width: 28px; height: 28px; }
+		.simg_RoboticsFactory        { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -140px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_Shipyard               { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -196px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_ResearchLab            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -140px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_MissileSilo            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -56px -5358px; display: block; width: 28px; height: 28px; }
+		.simg_NaniteFactory          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -168px -5302px; display: block; width: 28px; height: 28px; }
+		.simg_Terraformer            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -168px -5330px; display: block; width: 28px; height: 28px; }
+		.simg_SpaceDock              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -196px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_RocketLauncher         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -168px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_LightLaser             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -196px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_HeavyLaser             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -224px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_GaussCannon            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -0px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_IonCannon              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -28px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_PlasmaTurret           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -56px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_SmallShieldDome        { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -84px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_LargeShieldDome        { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -112px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_AntiBallisticMissiles  { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -140px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_InterplanetaryMissiles { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -168px -5470px; display: block; width: 28px; height: 28px; }
+		.simg_SmallCargo             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -28px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_LargeCargo             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -56px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_LightFighter           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -84px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_HeavyFighter           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -112px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_Cruiser                { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -140px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_Battleship             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -168px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_ColonyShip             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -196px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_Recycler               { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -224px -5414px; display: block; width: 28px; height: 28px; }
+		.simg_EspionageProbe         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -0px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_Bomber                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -28px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_SolarSatellite         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -56px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_Destroyer              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -84px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_Deathstar              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -112px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_Battlecruiser          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -140px -5442px; display: block; width: 28px; height: 28px; }
+		.simg_Reaper                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -392px -3440px; display: block; width: 28px; height: 28px; }
+		.simg_Pathfinder             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -420px -3440px; display: block; width: 28px; height: 28px; }
+		.simg_Crawler                { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -448px -3440px; display: block; width: 28px; height: 28px; }
+
+		.simg_EnergyTechnology             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -224px  -5358px; display: block; width: 28px; height: 28px; }
+		.simg_LaserTechnology              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -112px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_IonTechnology                { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -140px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_HyperspaceTechnology         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -0px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_PlasmaTechnology             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -168px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_CombustionDrive              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -28px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_ImpulseDrive                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -56px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_HyperspaceDrive              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -84px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_EspionageTechnology          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -84px  -5358px; display: block; width: 28px; height: 28px; }
+		.simg_ComputerTechnology           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -112px  -5358px; display: block; width: 28px; height: 28px; }
+		.simg_Astrophysics                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -224px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_IntergalacticResearchNetwork { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -196px  -5386px; display: block; width: 28px; height: 28px; }
+		.simg_GravitonTechnology           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -0px  -5414px; display: block; width: 28px; height: 28px; }
+		.simg_WeaponsTechnology            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -140px  -5358px; display: block; width: 28px; height: 28px; }
+		.simg_ShieldingTechnology          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -168px  -5358px; display: block; width: 28px; height: 28px; }
+		.simg_ArmourTechnology             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -196px  -5358px; display: block; width: 28px; height: 28px; }
+
+		.img_Metal      { background: url(/public/img/resources1.png)    0px -160px; width: 48px; height: 32px; }
+		.img_Crystal    { background: url(/public/img/resources1.png)  -48px -160px; width: 48px; height: 32px; }
+		.img_Deuterium  { background: url(/public/img/resources1.png)  -96px -160px; width: 48px; height: 32px; }
+		.img_Energy     { background: url(/public/img/resources1.png) -144px -160px; width: 48px; height: 32px; }
+		.img_DarkMatter { background: url(/public/img/resources1.png) -192px -160px; width: 48px; height: 32px; }
+
+		.simg_Metal      { background: url(/public/img/resources1.png); background-size: 250px 120px; background-position: 0 -100px; width: 30px; height: 20px; }
+		.simg_Crystal    { background: url(/public/img/resources1.png); background-size: 250px 120px; background-position: -30px -100px; width: 30px; height: 20px; }
+		.simg_Deuterium  { background: url(/public/img/resources1.png); background-size: 250px 120px; background-position: -60px -100px; width: 30px; height: 20px; }
+		.simg_DarkMatter { background: url(/public/img/resources1.png); background-size: 250px 120px; background-position: -120px -100px; width: 30px; height: 20px; }
+
+		.img_MetalMine              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)     0px 0px; width: 200px; height: 200px; }
+		.img_CrystalMine            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -200px 0px; width: 200px; height: 200px; }
+		.img_DeuteriumSynthesizer   { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -400px 0px; width: 200px; height: 200px; }
+		.img_SolarPlant             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -600px 0px; width: 200px; height: 200px; }
+		.img_FusionReactor          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -800px 0px; width: 200px; height: 200px; }
+		.img_SolarSatellite         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1000px 0px; width: 200px; height: 200px; }
+		.img_MetalStorage           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1200px 0px; width: 200px; height: 200px; }
+		.img_CrystalStorage         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1400px 0px; width: 200px; height: 200px; }
+		.img_DeuteriumTank          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1600px 0px; width: 200px; height: 200px; }
+		.img_ShieldedMetalDen       { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1800px 0px; width: 200px; height: 200px; }
+		.img_UndergroundCrystalDen  { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2000px 0px; width: 200px; height: 200px; }
+		.img_SeabedDeuteriumDen     { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2200px 0px; width: 200px; height: 200px; }
+
+		.img_RoboticsFactory        { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)    -0px   -1000px; width: 200px; height: 200px; }
+		.img_Shipyard               { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -200px   -1000px; width: 200px; height: 200px; }
+		.img_ResearchLab            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -400px   -1000px; width: 200px; height: 200px; }
+		.img_AllianceDepot          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -600px   -1000px; width: 200px; height: 200px; }
+		.img_MissileSilo            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -800px   -1000px; width: 200px; height: 200px; }
+		.img_NaniteFactory          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1000px   -1000px; width: 200px; height: 200px; }
+		.img_Terraformer            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1200px   -1000px; width: 200px; height: 200px; }
+		.img_LunarBase              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1400px   -1000px; width: 200px; height: 200px; }
+		.img_SensorPhalanx          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1600px   -1000px; width: 200px; height: 200px; }
+		.img_JumpGate               { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1800px   -1000px; width: 200px; height: 200px; }
+		.img_SpaceDock              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2000px   -1000px; width: 200px; height: 200px; }
+
+		.img_RocketLauncher         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)    -0px -2000px; width: 200px; height: 200px; }
+		.img_LightLaser             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -200px -2000px; width: 200px; height: 200px; }
+		.img_HeavyLaser             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -400px -2000px; width: 200px; height: 200px; }
+		.img_GaussCannon            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -600px -2000px; width: 200px; height: 200px; }
+		.img_IonCannon              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -800px -2000px; width: 200px; height: 200px; }
+		.img_PlasmaTurret           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1000px -2000px; width: 200px; height: 200px; }
+		.img_SmallShieldDome        { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1200px -2000px; width: 200px; height: 200px; }
+		.img_LargeShieldDome        { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1400px -2000px; width: 200px; height: 200px; }
+		.img_AntiBallisticMissiles  { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1600px -2000px; width: 200px; height: 200px; }
+		.img_InterplanetaryMissiles { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1800px -2000px; width: 200px; height: 200px; }
+
+		.img_LightFighter           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)      -0px -3000px; width: 200px; height: 200px; }
+		.img_HeavyFighter           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)    -200px -3000px; width: 200px; height: 200px; }
+		.img_Cruiser                { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)    -400px -3000px; width: 200px; height: 200px; }
+		.img_Battleship             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)    -600px -3000px; width: 200px; height: 200px; }
+		.img_Battlecruiser          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)    -800px -3000px; width: 200px; height: 200px; }
+		.img_Bomber                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -1000px -3000px; width: 200px; height: 200px; }
+		.img_Destroyer              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -1200px -3000px; width: 200px; height: 200px; }
+		.img_Deathstar              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -1400px -3000px; width: 200px; height: 200px; }
+		.img_SmallCargo             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -1600px -3000px; width: 200px; height: 200px; }
+		.img_LargeCargo             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -1800px -3000px; width: 200px; height: 200px; }
+		.img_ColonyShip             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -2000px -3000px; width: 200px; height: 200px; }
+		.img_Recycler               { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -2200px -3000px; width: 200px; height: 200px; }
+		.img_EspionageProbe         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -2400px -3000px; width: 200px; height: 200px; }
+		.img_Reaper                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -2800px -3000px; width: 200px; height: 200px; }
+		.img_Pathfinder             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -3000px -3000px; width: 200px; height: 200px; }
+		.img_Crawler                { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)   -3200px -3000px; width: 200px; height: 200px; }
+
+		.img_EnergyTechnology             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)    -0px -4000px; display: block; width: 200px; height: 200px; }
+		.img_LaserTechnology              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -200px -4000px; display: block; width: 200px; height: 200px; }
+		.img_IonTechnology                { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -400px -4000px; display: block; width: 200px; height: 200px; }
+		.img_HyperspaceTechnology         { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -600px -4000px; display: block; width: 200px; height: 200px; }
+		.img_PlasmaTechnology             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg)  -800px -4000px; display: block; width: 200px; height: 200px; }
+		.img_CombustionDrive              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1000px -4000px; display: block; width: 200px; height: 200px; }
+		.img_ImpulseDrive                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1200px -4000px; display: block; width: 200px; height: 200px; }
+		.img_HyperspaceDrive              { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1400px -4000px; display: block; width: 200px; height: 200px; }
+		.img_EspionageTechnology          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1600px -4000px; display: block; width: 200px; height: 200px; }
+		.img_ComputerTechnology           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -1800px -4000px; display: block; width: 200px; height: 200px; }
+		.img_Astrophysics                 { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2000px -4000px; display: block; width: 200px; height: 200px; }
+		.img_IntergalacticResearchNetwork { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2200px -4000px; display: block; width: 200px; height: 200px; }
+		.img_GravitonTechnology           { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2400px -4000px; display: block; width: 200px; height: 200px; }
+		.img_ArmourTechnology             { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2600px -4000px; display: block; width: 200px; height: 200px; }
+		.img_WeaponsTechnology            { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -2800px -4000px; display: block; width: 200px; height: 200px; }
+		.img_ShieldingTechnology          { background: url(/static/7a9861be0c38bf7de05a57c56d73cf.jpg) -3000px -4000px; display: block; width: 200px; height: 200px; }
+
+		.star_lord     { background: url(/public/img/ranks1.png) -75px 0; width: 15px; height: 15px; }
+		.emperor       { background: url(/public/img/ranks1.png) -60px 0; width: 15px; height: 15px; }
+		.grand_emperor { background: url(/public/img/ranks1.png) -45px 0; width: 15px; height: 15px; }
+		.bandit        { background: url(/public/img/ranks1.png) -30px 0; width: 15px; height: 15px; }
+		.bandit_lord   { background: url(/public/img/ranks1.png) -15px 0; width: 15px; height: 15px; }
+		.bandit_king   { background: url(/public/img/ranks1.png)  -0px 0; width: 15px; height: 15px; }
+
+		.img_expedition   { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)     0px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_colonisation { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -108px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_park         { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -162px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_recycle      { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -216px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_transport    { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -270px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_spy          { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -324px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_acs_defend   { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -378px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_attack       { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -432px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_destruction  { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -486px 0; display: inline-block; width: 54px; height: 54px; }
+		.img_acs_attack   { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg)  -540px 0; display: inline-block; width: 54px; height: 54px; }
+
+		.simg_expedition   { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position:    0px 0;  width: 27px; height: 27px; }
+		.simg_colonisation { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position:  -54px 0;  width: 27px; height: 27px; }
+		.simg_park         { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position:  -81px 0;  width: 27px; height: 27px; }
+		.simg_recycle       { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position: -108px 0; width: 27px; height: 27px; }
+		.simg_transport     { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position: -135px 0; width: 27px; height: 27px; }
+		.simg_spy           { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position: -162px 0; width: 27px; height: 27px; }
+		.simg_acs_defend    { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position: -189px 0; width: 27px; height: 27px; }
+		.simg_attack        { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position: -216px 0; width: 27px; height: 27px; }
+		.simg_destruction   { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position: -243px 0; width: 27px; height: 27px; }
+		.simg_acs_attack    { background: url(/assets/7a9861be0c38bf7de05a57c56d73cf.jpg); display: inline-block; background-size: 297px 107px; background-position: -270px 0; width: 27px; height: 27px; }
+
+		.mission_selected { background-position-y: -27px; }
+		.mission_disabled { background-position-y: -54px; }
+		</style>
+
+        <div>
+            {{range $k, $v := .Bot.GetCachedCelestials}}
+            <a href="/bot/empire/{{$v.GetID}}">[{{$v.GetCoordinate}}]</a> 
+            {{end}}
+        </div>
+        <div>
+            <h1>
+                Resources
+            </h1>
+            <div>Metal: {{ .ResourcesDetails.Available.Metal }}</div>
+            <div>Crystal: {{ .ResourcesDetails.Available.Crystal }}</div>
+            <div>Deuterium: {{ .ResourcesDetails.Available.Deuterium }}</div>
+            {{ $resDetails := .ResourcesDetails}}
+        </div>
+        <div>
+            <h1>Constructions</h1>
+            <table>
+                <tr>
+                    <td>Buildings</td>
+                    <td>{{ .BuildingID }}</td>
+                    <td>{{ .BuildingCountdown }}</td>
+                </tr>
+                <tr>
+                    <td>Researches</td>
+                    <td>{{ .ResearchID }}</td>
+                    <td>{{ .ResearchCountdown }}</td>
+                </tr>
+                <tr>
+                    <td>LfBuilding</td>
+                    <td>{{ .LfBuildingID }}</td>
+                    <td>{{ .LfBuildingCountdown }}</td>
+                </tr>
+                <tr>
+                    <td>LfResearches</td>
+                    <td>{{ .LfResearchID }}</td>
+                    <td>{{ .LfResearchCountdown }}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Resources</th>
+                <th>Action</th>
+            {{ range $k, $v := .Objs}}
+                {{ if eq $v.GetName "shielded metal den"}}
+                    {{continue}}
+                {{end}}
+                {{ if eq $v.GetName "underground crystal den"}}
+                    {{continue}}
+                {{end}}
+                {{ if eq $v.GetName "seabed deuterium den"}}
+                    {{continue}}
+                {{end}}
+
+
+                {{ if $v.GetID.IsResourceBuilding }}
+                <tr>
+                    <td>
+                        <span class="simg_{{ $v.GetID.String }}" style="display: inline-block;"></span>
+						<p style="position:relative;
+                            background: rgb(32, 32, 32); /* Fallback for older browsers without RGBA-support */
+                            background: rgba(32, 32, 32, 0.8);">{{ $v.GetName }}</p>
+
+                    </td>
+                    <td>
+                        {{ $.EmpireCelestial.Supplies.ByID $v.GetID }}
+                    </td>
+                    <td>
+                        {{$price := $v.GetPrice ($.EmpireCelestial.Supplies.ByID $v.GetID)}}
+                        Price: {{$price}}
+                        {{ if not ($.ResourcesDetails.Available.CanAfford $price)}}
+                        {{ $resCountdown := ResourceCountdown $price $resDetails }}
+                        ResNeeded: {{ $resCountdown.ResourcesNeeded }}
+                        Countdown: {{ $resCountdown.Countdown }} Seconds
+                        Missing: {{ $resCountdown.ResourceName }}
+                        {{end}}
+                    </td>
+                    <td>
+                        {{ if $.ResourcesDetails.Available.CanAfford $price}}
+                        <button onclick="BuildAction({{$v.GetID.Int}},0)">Build</button>
+                        {{end}}
+                        <!--onsubmit="return false;-->
+                    <form action="#">
+                        <button onclick="AddItemToQueue({{$v.GetID.Int}}, 0);">Add to Queue</button>
+                    </form>
+                    </td>
+                </tr>
+                {{ end }}
+            {{ end }}
+            </table>
+
+            <table>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Resources</th>
+                <th>Action</th>
+            {{ range $k, $v := .Objs}}
+                {{ if eq $v.GetName "shielded metal den"}}
+                    {{continue}}
+                {{end}}
+                {{ if eq $v.GetName "underground crystal den"}}
+                    {{continue}}
+                {{end}}
+                {{ if eq $v.GetName "seabed deuterium den"}}
+                    {{continue}}
+                {{end}}
+
+
+                {{ if $v.GetID.IsFacility }}
+                <tr>
+                    <td>
+                        <span class="simg_{{ $v.GetID.String }}" style="display: inline-block;"></span>
+						<p style="position:relative;
+                            background: rgb(32, 32, 32); /* Fallback for older browsers without RGBA-support */
+                            background: rgba(32, 32, 32, 0.8);">{{ $v.GetName }}</p>
+
+                    </td>
+                    <td>
+                        {{ $.EmpireCelestial.Facilities.ByID $v.GetID }}
+                    </td>
+                    <td>
+                        {{$price := $v.GetPrice ($.EmpireCelestial.Facilities.ByID $v.GetID)}}
+                        Price: {{$price}}
+                        {{ if not ($.ResourcesDetails.Available.CanAfford $price)}}
+                        {{ $resCountdown := ResourceCountdown $price $resDetails }}
+                        ResNeeded: {{ $resCountdown.ResourcesNeeded }}
+                        Countdown: {{ $resCountdown.Countdown }} Seconds
+                        Missing: {{ $resCountdown.ResourceName }}
+                        {{end}}
+                    </td>
+                    <td>
+                        {{ if $.ResourcesDetails.Available.CanAfford $price}}
+                        <button onclick="BuildAction({{$v.GetID.Int}},0)">Build</button>
+                        {{end}}
+                        <!--onsubmit="return false;-->
+                    <form action="#">
+                        <button onclick="AddItemToQueue({{$v.GetID.Int}}, 0);">Add to Queue</button>
+                    </form>
+                    </td>
+                </tr>
+                {{ end }}
+            {{ end }}
+            </table>
+
+            <table>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Resources</th>
+                <th>Action</th>
+            {{ range $k, $v := .Objs}}
+                {{ if eq $v.GetName "shielded metal den"}}
+                    {{continue}}
+                {{end}}
+                {{ if eq $v.GetName "underground crystal den"}}
+                    {{continue}}
+                {{end}}
+                {{ if eq $v.GetName "seabed deuterium den"}}
+                    {{continue}}
+                {{end}}
+
+
+                {{ if $v.GetID.IsTech }}
+                <tr>
+                    <td>
+                        <span class="simg_{{ $v.GetID.String }}" style="display: inline-block;"></span>
+						<p style="position:relative;
+                            background: rgb(32, 32, 32); /* Fallback for older browsers without RGBA-support */
+                            background: rgba(32, 32, 32, 0.8);">{{ $v.GetName }}</p>
+
+                    </td>
+                    <td>
+                        {{ $.EmpireCelestial.Researches.ByID $v.GetID }}
+                    </td>
+                    <td>
+                        {{$price := $v.GetPrice ($.EmpireCelestial.Researches.ByID $v.GetID)}}
+                        Price: {{$price}}
+                        {{ if not ($.ResourcesDetails.Available.CanAfford $price)}}
+                        {{ $resCountdown := ResourceCountdown $price $resDetails }}
+                        ResNeeded: {{ $resCountdown.ResourcesNeeded }}
+                        Countdown: {{ $resCountdown.Countdown }} Seconds
+                        Missing: {{ $resCountdown.ResourceName }}
+                        {{end}}
+                    </td>
+                    <td>
+                        {{ if $.ResourcesDetails.Available.CanAfford $price}}
+                        <button onclick="BuildAction({{$v.GetID.Int}},0)">Build</button>
+                        {{end}}
+                        <!--onsubmit="return false;-->
+                    <form action="#">
+                        <button onclick="AddItemToQueue({{$v.GetID.Int}}, 0);">Add to Queue</button>
+                    </form>
+                    </td>
+                </tr>
+                {{ end }}
+            {{ end }}
+            </table>
+
+            <table>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Action</th>
+            {{ range $k, $v := .Objs}}
+                {{ if $v.GetID.IsShip }}
+                <tr>
+                    <td>{{ $v.GetName }}</td>
+                    <td>
+                        {{ $.EmpireCelestial.Ships.ByID $v.GetID }}
+                    </td>
+                    <td>
+                        <input id="nbr_{{$v.GetID.Int}}" type="text" name="$v.GetID.Int" value=""/>
+                        <button onclick="BuildAction({{$v.GetID.Int}})">Build</button>
+                        <form action="#">
+                            <button onclick="AddItemToQueue({{$v.GetID.Int}});">Add to Queue</button>
+                        </form>
+                    </td>
+                </tr>
+                {{ end }}
+            {{ end }}
+            </table>
+
+            <table>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Action</th>
+            {{ range $k, $v := .Objs}}
+                {{ if $v.GetID.IsDefense }} 
+                <tr>
+                    <td>{{ $v.GetName }}</td>
+                    <td>
+                        {{ $.EmpireCelestial.Defenses.ByID $v.GetID }}
+                    </td>
+                    <td>
+                        <input id="nbr_{{$v.GetID.Int}}" type="text" name="$v.GetID.Int" value=""/>
+                        <button onclick="BuildAction({{$v.GetID.Int}})">Build</button>
+                        <!--<form id="{{$v.GetID.Int}}" action="/bot/empire/{{ $.EmpireCelestial.ID }}/addqueue/{{$v.GetID.Int}}/0" method="POST">-->
+                        <form action="#">
+                            <button onclick="AddItemToQueue({{$v.GetID.Int}});">Add to Queue</button>
+                        </form>
+                    </td>
+                </tr>
+                {{ end }}
+            {{ end }}
+            </table>
+        </div>
+        <script>
+
+            function AddItemToQueue (buildID, nbr) {
+                event.preventDefault();
+                var planetid = {{ $.EmpireCelestial.ID}}
+                if (nbr === undefined) {
+                    nbr = $("#nbr_" + buildID).val();
+                }
+                var url = "/bot/empire/"+planetid+"/addqueue/"+buildID+"/"+nbr;
+
+                $.post(url, null);
+            }
+
+            function BuildAction(buildID, nbr) {
+                event.preventDefault();
+                var planetid = {{ $.EmpireCelestial.ID}}
+                if (nbr === undefined) {
+                    nbr = $("#nbr_" + buildID).val();
+                }
+                var url = "/bot/planets/"+planetid+"/build/"+buildID+"/"+nbr;
+
+                $.post(url, null);  
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+{{ end }}
