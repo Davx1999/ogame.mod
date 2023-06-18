@@ -34,6 +34,8 @@ type BotPlanet struct {
 	ogame.LfResearches       `gorm:"embedded"`
 	ConstructionFinishedAt   *time.Time
 	ConstructionBuildingID   *int64
+	ResearchID               *int64
+	ResearchFinishedAt       *time.Time
 	ProductionQueue          []byte
 	ProductionFinishedAt     *time.Time
 	LfBuildingFinishedAt     *time.Time

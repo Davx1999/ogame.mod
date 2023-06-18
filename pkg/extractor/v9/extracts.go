@@ -745,6 +745,7 @@ func extractTechnologyDetailsFromDoc(doc *goquery.Document) (out ogame.Technolog
 	out.Price.Population = utils.DoParseI64(doc.Find("div.costs li.population").AttrOr("data-value", ""))
 
 	out.TearDownEnabled = extractTearDownButtonEnabledFromDoc(doc)
+	out.UpgradeEnabled = extractUpgradeButtonEnabledFromDoc(doc)
 
 	return out, err
 }
@@ -754,6 +755,13 @@ func extractTearDownButtonEnabledFromDoc(doc *goquery.Document) (out bool) {
 		if _, exists := doc.Find("button.downgrade").Attr("disabled"); !exists {
 			out = true
 		}
+	}
+	return
+}
+
+func extractUpgradeButtonEnabledFromDoc(doc *goquery.Document) (out bool) {
+	if doc.Find("button.upgrade").Length() == 1 {
+		out = true
 	}
 	return
 }

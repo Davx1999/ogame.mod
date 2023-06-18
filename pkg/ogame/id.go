@@ -490,7 +490,7 @@ func (o ID) IsLfBuilding() bool {
 
 // IsBuilding returns either or not the id is a building (facility, resource building)
 func (o ID) IsBuilding() bool {
-	return o.IsResourceBuilding() || o.IsLfBuilding() || o.IsFacility()
+	return o.IsResourceBuilding() || o.IsFacility()
 }
 
 // IsTech returns either or not the id is a technology

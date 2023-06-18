@@ -12,7 +12,6 @@ import (
 
 func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, payload url.Values, pageHTML []byte) {
 	myExtractor := bot.GetExtractor()
-
 	universeName := bot.Universe
 	language := bot.GetLanguage()
 	playerID := bot.Player.PlayerID
@@ -26,6 +25,32 @@ func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, pay
 		}
 
 		var currentDBPlanet BotPlanet
+
+		if wrapper.IsEmpirePage(params) {
+			empire, err := myExtractor.ExtractEmpire(pageHTML)
+			if err != nil {
+				return
+			}
+
+			for _, ep := range empire {
+				db.Where(&BotPlanet{UniverseName: universeName, Language: language, PlayerID: playerID}).Find(&currentDBPlanet)
+				currentDBPlanet.UniverseName = universeName
+				currentDBPlanet.Language = language
+				currentDBPlanet.PlayerID = playerID
+				currentDBPlanet.CelestialID = int64(ep.ID)
+				currentDBPlanet.Resources = ep.Resources
+				currentDBPlanet.Galaxy = ep.Coordinate.Galaxy
+				currentDBPlanet.System = ep.Coordinate.System
+				currentDBPlanet.Position = ep.Coordinate.Position
+				currentDBPlanet.CelestialType = ep.Coordinate.Type.Int()
+				currentDBPlanet.ResourcesBuildings = ep.Supplies
+				currentDBPlanet.Facilities = ep.Facilities
+				currentDBPlanet.ShipsInfos = ep.Ships
+				currentDBPlanet.DefensesInfos = ep.Defenses
+				db.Save(&currentDBPlanet)
+			}
+
+		}
 
 		if wrapper.IsKnowFullPage(params) {
 			currentCelestialID, err := myExtractor.ExtractPlanetID(pageHTML)
@@ -64,7 +89,7 @@ func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, pay
 			switch page {
 			case wrapper.OverviewPageName:
 				// Extract all Constructions
-				buildingID, buildingCountDown, _, _, lfBuildingID, lfBuildingCountDown, lfResearchID, lfResearchCountDown := myExtractor.ExtractConstructions(pageHTML)
+				buildingID, buildingCountDown, researchID, researchCountDown, lfBuildingID, lfBuildingCountDown, lfResearchID, lfResearchCountDown := myExtractor.ExtractConstructions(pageHTML)
 
 				if buildingID != 0 {
 					tmp := int64(buildingID)
@@ -74,6 +99,16 @@ func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, pay
 				} else {
 					currentDBPlanet.ConstructionBuildingID = nil
 					currentDBPlanet.ConstructionFinishedAt = nil
+				}
+
+				if researchID != 0 {
+					tmp := int64(researchID)
+					currentDBPlanet.ResearchID = &tmp
+					tmp2 := currentTime.Add(time.Duration(researchCountDown) * time.Second)
+					currentDBPlanet.ResearchFinishedAt = &tmp2
+				} else {
+					currentDBPlanet.ResearchID = nil
+					currentDBPlanet.ResearchFinishedAt = nil
 				}
 
 				if lfBuildingID != 0 {
@@ -168,8 +203,6 @@ func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, pay
 				//productionQf, productionCountDown, err := v9.NewExtractor().ExtractOverviewProduction(pageHTML)
 				productionQf, productionCountDown, err := ext.ExtractOverviewProduction(pageHTML)
 				//productionQf, productionCountDown, err := myExtractor.ExtractOverviewProduction(pageHTML)
-				log.Println(productionQf)
-
 				if err != nil {
 					return
 				}
@@ -187,6 +220,20 @@ func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, pay
 					currentDBPlanet.ProductionFinishedAt = nil
 					currentDBPlanet.ProductionQueue = nil
 				}
+
+			case wrapper.LfBuildingsPageName:
+				lfb, err := myExtractor.ExtractLfBuildings(pageHTML)
+				if err != nil {
+					return
+				}
+				currentDBPlanet.LfBuildings = lfb
+			case wrapper.LfResearchPageName:
+				lfr, err := myExtractor.ExtractLfResearch(pageHTML)
+				if err != nil {
+					return
+				}
+				currentDBPlanet.LfResearches = lfr
+
 			}
 			db.Save(&currentDBPlanet)
 		}

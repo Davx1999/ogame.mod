@@ -1,12 +1,14 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
 	"log"
 	"math"
 	"time"
 
 	"github.com/alaingilbert/ogame/pkg/ogame"
-	"github.com/alaingilbert/ogame/pkg/utils"
+	"github.com/alaingilbert/ogame/pkg/wrapper"
 	"gorm.io/gorm"
 )
 
@@ -44,6 +46,21 @@ func getQueue(serverName, serverLanguage string, playerID int64) []BuildQueue {
 	return b
 }
 
+func getQueueForCelestial(serverName, serverLanguage string, playerID int64, celestialID ogame.CelestialID) []BuildQueue {
+	var b []BuildQueue
+	db.Where(&BuildQueue{ServerName: serverName, ServerLanguage: serverLanguage, PlayerID: playerID, CelestialID: int64(celestialID)}).Find(&b)
+	return b
+}
+
+func getCelestialFromDB(serverName, serverLanguage string, playerID int64, celestialID ogame.CelestialID) BotPlanet {
+	var b BotPlanet
+	result := db.Where(&BotPlanet{UniverseName: serverName, Language: serverLanguage, PlayerID: playerID, CelestialID: int64(celestialID)}).Find(&b)
+	if result.Error != nil {
+		log.Printf("Database Error %s", result.Error)
+	}
+	return b
+}
+
 type missingResources struct {
 	ResourcesNeeded ogame.Resources
 	Countdown       int64
@@ -61,15 +78,18 @@ func ResourceCountdown(price ogame.Resources, res ogame.ResourcesDetails) missin
 	deuteriumNeeded := res.Available().Deuterium - price.Deuterium
 
 	if metallNeeded < 0 {
-		metallNeeded = utils.AbsInt64(metallNeeded)
+		//metallNeeded = utils.AbsInt64(metallNeeded)
+		metallNeeded = 0
 	}
 
 	if crystalNeeded < 0 {
-		crystalNeeded = utils.AbsInt64(crystalNeeded)
+		//crystalNeeded = utils.AbsInt64(crystalNeeded)
+		crystalNeeded = 0
 	}
 
 	if deuteriumNeeded < 0 {
-		deuteriumNeeded = utils.AbsInt64(deuteriumNeeded)
+		//deuteriumNeeded = utils.AbsInt64(deuteriumNeeded)
+		deuteriumNeeded = 0
 	}
 
 	var metalCountdown time.Duration
@@ -111,114 +131,204 @@ func ResourceCountdown(price ogame.Resources, res ogame.ResourcesDetails) missin
 	return result
 }
 
-// func ResourceCountdown(price ogame.Resources, res ogame.ResourcesDetails) int64 {
-// 	if res.Available().CanAfford(price) {
-// 		return 0
-// 	}
+type BotBrain struct {
+	*wrapper.OGame
+	ctx                   context.Context
+	cancelFunc            context.CancelFunc
+	celestialsCtx         map[ogame.CelestialID]context.Context
+	celestialsCancelFuncs map[ogame.CelestialID]context.CancelFunc
+	reRunCh               chan ogame.CelestialID
+}
 
-// 	metallNeeded := res.Available().Metal - price.Metal
-// 	crystalNeeded := res.Available().Crystal - price.Crystal
-// 	deuteriumNeeded := res.Available().Deuterium - price.Deuterium
+func NewBotBrain(bot *wrapper.OGame) (b *BotBrain) {
+	b = &BotBrain{}
+	b.OGame = bot
+	b.celestialsCtx = map[ogame.CelestialID]context.Context{}
+	b.celestialsCancelFuncs = map[ogame.CelestialID]context.CancelFunc{}
+	b.ctx, b.cancelFunc = context.WithCancel(context.Background())
+	b.reRunCh = make(chan ogame.CelestialID)
+	return
+}
 
-// 	if metallNeeded < 0 {
-// 		metallNeeded = utils.AbsInt64(metallNeeded)
-// 	}
+func (brain *BotBrain) registerCelestial(celestialID ogame.CelestialID) {
+	log.Printf("Register Celestial %d", celestialID)
+	brain.celestialsCtx[celestialID], brain.celestialsCancelFuncs[celestialID] = context.WithCancel(brain.ctx)
+}
 
-// 	if crystalNeeded < 0 {
-// 		crystalNeeded = utils.AbsInt64(crystalNeeded)
-// 	}
+func (brain *BotBrain) removeCelestial(celestialID ogame.CelestialID) {
+	log.Printf("Remove Celestial %d", celestialID)
+	delete(brain.celestialsCtx, celestialID)
+	delete(brain.celestialsCancelFuncs, celestialID)
+}
 
-// 	if deuteriumNeeded < 0 {
-// 		deuteriumNeeded = utils.AbsInt64(deuteriumNeeded)
-// 	}
+func (brain *BotBrain) ReRun(celestialID ogame.CelestialID) {
+	log.Printf("re run brain logic for %d\n", celestialID)
+	cancel, ex := brain.celestialsCancelFuncs[celestialID]
+	if ex {
+		cancel()
+		brain.reRunCh <- celestialID
+	}
+}
 
-// 	var metalCountdown time.Duration
-// 	var crystalCountdown time.Duration
-// 	var deuteriumCountdown time.Duration
+var localBrain *BotBrain
 
-// 	if res.Metal.CurrentProduction != 0 {
-// 		metalCountdown = time.Duration(int64(math.Ceil(float64(metallNeeded/res.Metal.CurrentProduction)))) * time.Hour
-// 	}
+func StartBrain(bot *wrapper.OGame) {
+	log.Println("--- START BRAIN  ---")
+	localBrain = NewBotBrain(bot)
+	for {
+		if bot.IsLoggedIn() && bot.Player.PlayerID != 0 {
+			go localBrain.BuilderStart()
+			break
+		} else {
+			time.Sleep(3 * time.Second)
+		}
+	}
 
-// 	if res.Crystal.CurrentProduction != 0 {
-// 		crystalCountdown = time.Duration(int64(math.Ceil(float64(crystalNeeded/res.Crystal.CurrentProduction)))) * time.Hour
-// 	}
+}
 
-// 	if res.Deuterium.CurrentProduction != 0 {
-// 		deuteriumCountdown = time.Duration(int64(math.Ceil(float64(deuteriumNeeded/res.Deuterium.CurrentProduction)))) * time.Hour
-// 	}
+func (brain *BotBrain) BuilderStart() {
+	for {
+		celestialWorkerFunc := func(ctx context.Context, celestialID ogame.CelestialID) {
+			for {
+				time.Sleep(1 * time.Second)
 
-// 	var maxCountdown int64
-// 	//var maxResName string
+				queue := getQueueForCelestial(brain.Universe, brain.GetServer().Language, brain.Player.PlayerID, celestialID)
 
-// 	if metalCountdown > crystalCountdown {
-// 		maxCountdown = int64(metalCountdown.Seconds())
-// 		//maxResName = "Metal"
-// 	} else {
-// 		maxCountdown = int64(crystalCountdown.Seconds())
-// 		//maxResName = "Crystal"
-// 	}
+				var waitTime time.Duration
+				var waitConstuctionBuildings time.Duration = 4 * time.Hour
+				var waitResearches time.Duration = 4 * time.Hour
+				var waitLfBuildings time.Duration = 4 * time.Hour
 
-// 	if deuteriumCountdown > time.Duration(maxCountdown)*time.Second {
-// 		maxCountdown = int64(deuteriumCountdown.Seconds())
-// 		//maxResName = "Deuterium"
-// 	}
+				if len(queue) == 0 {
+					log.Println("Item not found!!!")
+					waitTime = time.Duration(30 * time.Minute)
+				} else {
+					log.Println("Item found!!!")
+					item := queue[0]
+					var nextItem *BuildQueue
+					if len(queue) > 1 {
+						nextItem = &queue[1]
+					}
+					//log.Printf("U: %s, L: %s P: %d C:%d\n", brain.Universe, brain.GetServer().Language, brain.Player.PlayerID, celestialID)
+					botPlanet := getCelestialFromDB(brain.Universe, brain.GetServer().Language, brain.Player.PlayerID, celestialID)
 
-// 	return maxCountdown
-// }
+					build := func() {
+						tech, err := brain.TechnologyDetails(celestialID, ogame.ID(item.OGameID))
+						if err != nil {
+							return
+						}
 
-// func ResourceNeeded(price ogame.Resources, res ogame.ResourcesDetails) string {
-// 	if res.Available().CanAfford(price) {
-// 		return ""
-// 	}
+						if botPlanet.Resources.CanAfford(tech.Price) && tech.UpgradeEnabled {
+							log.Printf("Start Upgrade: %s\n", ogame.ID(item.OGameID).String())
+							brain.Build(celestialID, ogame.ID(item.OGameID), item.Nbr)
+							db.Delete(&item)
+							time.Sleep(3 * time.Second)
+							if ogame.ID(item.OGameID).IsBuilding() {
+								_, sec, _, _, _, _, _, _ := brain.ConstructionsBeingBuilt(celestialID)
+								if nextItem != nil {
+									if ogame.ID(nextItem.OGameID).IsBuilding() {
+										waitTime = time.Duration(sec * int64(time.Second))
+									}
+								}
+							}
+							if ogame.ID(item.OGameID).IsTech() {
+								_, _, _, sec, _, _, _, _ := brain.ConstructionsBeingBuilt(celestialID)
+								if nextItem != nil {
+									if ogame.ID(nextItem.OGameID).IsTech() {
+										waitTime = time.Duration(sec * int64(time.Second))
+									}
+								}
+							}
+							if ogame.ID(item.OGameID).IsLfBuilding() {
+								_, _, _, _, _, sec, _, _ := brain.ConstructionsBeingBuilt(celestialID)
+								if nextItem != nil {
+									if ogame.ID(nextItem.OGameID).IsLfBuilding() {
+										waitTime = time.Duration(sec * int64(time.Second))
+									}
+								}
+							}
+						} else {
+							var resDetails ogame.ResourcesDetails
+							json.Unmarshal(botPlanet.ResourcesDetails, &resDetails)
+							result := ResourceCountdown(tech.Price, resDetails)
+							log.Printf("Price: %s | Resources: %s %s", tech.Price, resDetails.Available(), result)
+							waitTime = time.Duration(result.Countdown) * time.Second
+							if result.Countdown == 0 {
+								waitTime = 15 * time.Minute
+							}
+						}
 
-// 	metallNeeded := res.Available().Metal - price.Metal
-// 	crystalNeeded := res.Available().Crystal - price.Crystal
-// 	deuteriumNeeded := res.Available().Deuterium - price.Deuterium
+					}
 
-// 	if metallNeeded < 0 {
-// 		metallNeeded = utils.AbsInt64(metallNeeded)
-// 	}
+					if ogame.ID(item.OGameID).IsBuilding() && botPlanet.ConstructionBuildingID == nil {
+						build()
+					} else if botPlanet.ConstructionFinishedAt != nil {
+						waitTime = time.Until(*botPlanet.ConstructionFinishedAt)
+						waitConstuctionBuildings = time.Until(*botPlanet.ConstructionFinishedAt)
+					}
 
-// 	if crystalNeeded < 0 {
-// 		crystalNeeded = utils.AbsInt64(crystalNeeded)
-// 	}
+					if ogame.ID(item.OGameID).IsTech() && botPlanet.ResearchFinishedAt == nil {
+						build()
+					} else if botPlanet.ResearchFinishedAt != nil {
+						waitTime = time.Until(*botPlanet.ResearchFinishedAt)
+						waitResearches = time.Until(*botPlanet.ResearchFinishedAt)
+					}
 
-// 	if deuteriumNeeded < 0 {
-// 		deuteriumNeeded = utils.AbsInt64(deuteriumNeeded)
-// 	}
+					if ogame.ID(item.OGameID).IsLfBuilding() && botPlanet.LfBuildingFinishedAt == nil {
+						build()
+					} else if botPlanet.LfBuildingFinishedAt != nil {
+						waitTime = time.Until(*botPlanet.LfBuildingFinishedAt)
+						waitLfBuildings = time.Until(*botPlanet.LfBuildingFinishedAt)
+					}
 
-// 	var metalCountdown time.Duration
-// 	var crystalCountdown time.Duration
-// 	var deuteriumCountdown time.Duration
+				}
 
-// 	if res.Metal.CurrentProduction != 0 {
-// 		metalCountdown = time.Duration(int64(math.Ceil(float64(metallNeeded/res.Metal.CurrentProduction)))) * time.Hour
-// 	}
+				log.Printf("wait for %s", waitTime)
+				select {
+				case <-ctx.Done():
+					return
 
-// 	if res.Crystal.CurrentProduction != 0 {
-// 		crystalCountdown = time.Duration(int64(math.Ceil(float64(crystalNeeded/res.Crystal.CurrentProduction)))) * time.Hour
-// 	}
+				case <-time.After(waitTime):
+					log.Printf("Waited %s ", waitTime)
+					time.Sleep(3 * time.Second)
+					brain.ConstructionsBeingBuilt(celestialID)
+				case <-time.After(waitConstuctionBuildings):
+					log.Printf("Finished Construction")
+					time.Sleep(3 * time.Second)
+					brain.ConstructionsBeingBuilt(celestialID)
+				case <-time.After(waitResearches):
+					log.Printf("Finished Research")
+					time.Sleep(3 * time.Second)
+					brain.ConstructionsBeingBuilt(celestialID)
+				case <-time.After(waitLfBuildings):
+					log.Printf("Finished LfBuilding")
+					time.Sleep(3 * time.Second)
+					brain.ConstructionsBeingBuilt(celestialID)
 
-// 	if res.Deuterium.CurrentProduction != 0 {
-// 		deuteriumCountdown = time.Duration(int64(math.Ceil(float64(deuteriumNeeded/res.Deuterium.CurrentProduction)))) * time.Hour
-// 	}
+				}
+			}
+		}
 
-// 	var maxCountdown int64
-// 	var maxResName string
+		cachedCelestials, err := brain.GetCelestials()
+		if err != nil {
+			time.Sleep(3 * time.Second)
+		}
+		for _, c := range cachedCelestials {
+			if _, exists := brain.celestialsCancelFuncs[c.GetID()]; !exists {
+				log.Println("Register Celestial Worker!")
+				brain.registerCelestial(c.GetID())
+				go celestialWorkerFunc(brain.celestialsCtx[c.GetID()], c.GetID())
+			}
+		}
 
-// 	if metalCountdown > crystalCountdown {
-// 		maxCountdown = int64(metalCountdown.Seconds())
-// 		maxResName = "Metal"
-// 	} else {
-// 		maxCountdown = int64(crystalCountdown.Seconds())
-// 		maxResName = "Crystal"
-// 	}
-
-// 	if deuteriumCountdown > time.Duration(maxCountdown)*time.Second {
-// 		maxCountdown = int64(deuteriumCountdown.Seconds())
-// 		maxResName = "Deuterium"
-// 	}
-
-// 	return maxResName
-// }
+		select {
+		case celestialID := <-brain.reRunCh:
+			time.Sleep(3 * time.Second)
+			cancel := brain.celestialsCancelFuncs[celestialID]
+			cancel()
+			brain.removeCelestial(celestialID)
+		case <-brain.ctx.Done():
+			return
+		}
+	}
+}

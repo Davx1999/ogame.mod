@@ -26,6 +26,8 @@ func GetEmpirePlanetHandler(c echo.Context) error {
 	res := struct {
 		Bot                 *wrapper.OGame
 		EmpireCelestial     ogame.EmpireCelestial
+		LifeformString      string
+		LfBuildings         ogame.LfBuildings
 		ResourcesDetails    ogame.ResourcesDetails
 		Objs                map[ogame.ID]ogame.BaseOgameObj
 		BuildingID          ogame.ID
@@ -37,6 +39,7 @@ func GetEmpirePlanetHandler(c echo.Context) error {
 		LfResearchID        ogame.ID
 		LfResearchCountdown int64
 	}{}
+
 	res.Bot = bot
 	res.Objs = ogame.Objs.GetAllObjs()
 	planetID, err := utils.ParseI64(c.Param("planetID"))
@@ -44,6 +47,13 @@ func GetEmpirePlanetHandler(c echo.Context) error {
 		planetID = int64(bot.GetCachedCelestials()[0].GetID())
 		//return c.JSON(http.StatusBadRequest, wrapper.ErrorResp(400, "invalid planet id"))
 	}
+
+	var botPlanet BotPlanet
+	db.Where(&BotPlanet{UniverseName: bot.Universe, Language: bot.GetServer().Language, PlayerID: bot.Player.PlayerID, CelestialID: planetID}).Find(&botPlanet)
+	lfbtmp := botPlanet.LfBuildings
+	res.LfBuildings = lfbtmp
+	res.LifeformString = lfbtmp.LifeformType.String()
+
 	res.BuildingID, res.BuildingCountdown, res.ResearchID, res.ResearchCountdown, res.LfBuildingID, res.LfBuildingCountdown, res.LfResearchID, res.LfResearchCountdown = bot.ConstructionsBeingBuilt(ogame.CelestialID(planetID))
 
 	planets, err := bot.GetEmpire(ogame.PlanetType)
@@ -175,6 +185,10 @@ func AddQueue(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, wrapper.ErrorResp(400, "invalid nbr"))
 	}
 	addQueue(bot.Universe, bot.GetServer().Language, bot.Player.PlayerID, planetID, ogameID, nbr)
+	queue := getQueueForCelestial(bot.Universe, bot.GetServer().Language, bot.Player.PlayerID, ogame.CelestialID(planetID))
+	if len(queue) == 1 {
+		localBrain.ReRun(ogame.CelestialID(planetID))
+	}
 	return c.JSON(http.StatusOK, wrapper.SuccessResp(nil))
 }
 

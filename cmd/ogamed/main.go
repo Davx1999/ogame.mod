@@ -360,8 +360,6 @@ func start(c *cli.Context) error {
 
 	dbInit(username)
 
-	bot.RegisterHTMLInterceptor(getHTMLInterceptor(bot))
-
 	e := echo.New()
 
 	tt := &MyTemplate{
@@ -558,10 +556,27 @@ func start(c *cli.Context) error {
 	e.POST("/bot/flighttime", APIFlightTime)
 	e.POST("/bot/flights/:fleetID/cancel", APIFlightsCancel)
 
+	e.GET("/bot/empire/:planetID/rerun", APIReRunBrainHandler)
+
 	if enableTLS {
 		log.Println("Enable TLS Support running encrypted HTTPS Server")
 		return e.StartTLS(host+":"+strconv.Itoa(port), tlsCertFile, tlsKeyFile)
 	}
 	log.Println("Disable TLS Support running unencrypted HTTP Server")
+
+	go StartBrain(bot)
+	go registerHTMLInterceptor(bot)
+
 	return e.Start(host + ":" + strconv.Itoa(port))
+}
+
+func registerHTMLInterceptor(bot *wrapper.OGame) {
+	for {
+		if bot.IsLoggedIn() && bot.Player.PlayerID != 0 {
+			break
+		} else {
+			time.Sleep(1 * time.Second)
+		}
+	}
+	bot.RegisterHTMLInterceptor(getHTMLInterceptor(bot))
 }

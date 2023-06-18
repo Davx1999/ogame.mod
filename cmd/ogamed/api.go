@@ -303,3 +303,15 @@ func APIFlightsCancel(c echo.Context) error {
 	bot.CancelFleet(ogame.FleetID(fleetID))
 	return c.Redirect(http.StatusFound, "/bot/flights")
 }
+
+func APIReRunBrainHandler(c echo.Context) error {
+	//bot := c.Get("bot").(*wrapper.OGame)
+	planetID, err := strconv.ParseInt(c.Param("planetID"), 10, 64)
+	if err != nil || planetID < 0 {
+		return c.JSON(http.StatusBadRequest, wrapper.ErrorResp(400, "invalid planet id"))
+	}
+
+	localBrain.ReRun(ogame.CelestialID(planetID))
+
+	return c.JSON(http.StatusOK, nil)
+}
