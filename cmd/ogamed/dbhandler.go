@@ -139,7 +139,6 @@ func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, pay
 				//productionQf, productionCountDown, err := v9.NewExtractor().ExtractOverviewProduction(pageHTML)
 				productionQf, productionCountDown, err := ext.ExtractOverviewProduction(pageHTML)
 				//productionQf, productionCountDown, err := myExtractor.ExtractOverviewProduction(pageHTML)
-				log.Println(productionQf)
 
 				if err != nil {
 					return
@@ -209,7 +208,6 @@ func getHTMLInterceptor(bot *wrapper.OGame) func(method, url string, params, pay
 				if productionCountDown != 0 {
 					tmp2 := currentTime.Add(time.Duration(productionCountDown) * time.Second)
 					currentDBPlanet.ProductionFinishedAt = &tmp2
-					log.Println(productionQf)
 					tmp1, err := json.Marshal(productionQf)
 					if err != nil {
 						log.Fatal(err)
