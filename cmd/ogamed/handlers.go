@@ -192,6 +192,24 @@ func AddQueue(c echo.Context) error {
 	return c.JSON(http.StatusOK, wrapper.SuccessResp(nil))
 }
 
+func GetTechDetailsHandler(c echo.Context) error {
+	bot := c.Get("bot").(*wrapper.OGame)
+	celestialID, err := utils.ParseI64(c.Param("celestialID"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, wrapper.ErrorResp(400, "invalid celestial id"))
+	}
+	ogameid, err := utils.ParseI64(c.Param("ogameID"))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, wrapper.ErrorResp(400, "invalid ogame id"))
+	}
+	res, err := bot.TechnologyDetails(ogame.CelestialID(celestialID), ogame.ID(ogameid))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, wrapper.ErrorResp(400, err.Error()))
+
+	}
+	return c.JSON(http.StatusOK, wrapper.SuccessResp(res))
+}
+
 var ObjIDs = []ogame.ID{ogame.AllianceDepotID,
 	ogame.CrystalMineID,
 	ogame.CrystalStorageID,

@@ -215,6 +215,7 @@ func (brain *BotBrain) BuilderStart() {
 					build := func() {
 						tech, err := brain.TechnologyDetails(celestialID, ogame.ID(item.OGameID))
 						if err != nil {
+							log.Println(err)
 							return
 						}
 

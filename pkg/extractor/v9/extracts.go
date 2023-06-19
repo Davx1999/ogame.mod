@@ -727,15 +727,21 @@ func extractTechnologyDetailsFromDoc(doc *goquery.Document) (out ogame.Technolog
 	out.TechnologyID = ogame.ID(utils.DoParseI64(doc.Find("div#technologydetails").AttrOr("data-technology-id", "")))
 
 	durationStr := doc.Find("li.build_duration time").AttrOr("datetime", "")
-	rgx := regexp.MustCompile(`PT(?:(\d+)H)?(?:(\d+)M)?(\d+)S`)
-	m := rgx.FindStringSubmatch(durationStr)
-	if len(m) != 4 {
+	// rgx := regexp.MustCompile(`PT(?:(\d+)H)?(?:(\d+)M)?(\d+)S`)
+	// m := rgx.FindStringSubmatch(durationStr)
+	// if len(m) != 4 {
+	// 	return out, fmt.Errorf("failed to extract duration: %s", durationStr)
+	// }
+	// hour := time.Duration(utils.DoParseI64(m[1])) * time.Hour
+	// min := time.Duration(utils.DoParseI64(m[2])) * time.Minute
+	// sec := time.Duration(utils.DoParseI64(m[3])) * time.Second
+	// out.ProductionDuration = hour + min + sec
+
+	durationStr = strings.ToLower(strings.ReplaceAll(durationStr, "PT", ""))
+	out.ProductionDuration, err = time.ParseDuration(durationStr)
+	if err != nil {
 		return out, fmt.Errorf("failed to extract duration: %s", durationStr)
 	}
-	hour := time.Duration(utils.DoParseI64(m[1])) * time.Hour
-	min := time.Duration(utils.DoParseI64(m[2])) * time.Minute
-	sec := time.Duration(utils.DoParseI64(m[3])) * time.Second
-	out.ProductionDuration = hour + min + sec
 
 	out.Level = utils.DoParseI64(doc.Find("span.level").AttrOr("data-value", "")) - 1
 
