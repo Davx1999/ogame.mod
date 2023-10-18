@@ -572,7 +572,7 @@ type ServerData struct {
 	GlobalDeuteriumSaveFactor     float64 `xml:"globalDeuteriumSaveFactor"`     // 0.5
 	Bashlimit                     int64   `xml:"bashlimit"`                     // 0
 	ProbeCargo                    int64   `xml:"probeCargo"`                    // 5
-	ResearchDurationDivisor       int64   `xml:"researchDurationDivisor"`       // 2
+	ResearchDurationDivisor       float64 `xml:"researchDurationDivisor"`       // 2
 	DarkMatterNewAcount           int64   `xml:"darkMatterNewAcount"`           // 8000
 	CargoHyperspaceTechMultiplier int64   `xml:"cargoHyperspaceTechMultiplier"` // 5
 	SpeedFleet                    int64   `xml:"speedFleet"`                    // 6 // Deprecated in 8.1.0
