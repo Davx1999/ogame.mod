@@ -4602,7 +4602,7 @@ func (b *OGame) GetUsername() string {
 }
 
 // GetResearchSpeed gets the research speed
-func (b *OGame) GetResearchSpeed() float64 {
+func (b *OGame) GetResearchSpeed() int64 {
 	return b.serverData.ResearchDurationDivisor
 }
 
